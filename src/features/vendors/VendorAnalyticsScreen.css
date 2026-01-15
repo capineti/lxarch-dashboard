@@ -49,8 +49,8 @@
 
 .v-summary-card {
     flex: 1;
-    background: #666666;
-    /* Medium Gray for 'disable' look */
+    background: #1a1a1a;
+    /* Revert to Black/Dark per user request */
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     color: #ffffff;
@@ -137,6 +137,28 @@
     border-color: #ffffff;
     /* Keep white border on hover */
     transform: translateY(-4px);
+}
+
+/* Improve badge contrast in dark/gray variant cards */
+.call-card.dark-variant .score-high {
+    background: rgba(74, 222, 128, 0.2);
+    /* Lighter green bg */
+    color: #4ade80;
+    /* Lighter green text */
+}
+
+.call-card.dark-variant .score-med {
+    background: rgba(250, 204, 21, 0.2);
+    /* Lighter yellow bg */
+    color: #facc15;
+    /* Lighter yellow text */
+}
+
+.call-card.dark-variant .score-low {
+    background: rgba(248, 113, 113, 0.2);
+    /* Lighter red bg */
+    color: #f87171;
+    /* Lighter red text */
 }
 
 .call-header {
