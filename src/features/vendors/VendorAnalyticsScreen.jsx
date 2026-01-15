@@ -1,111 +1,99 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './VendorAnalyticsScreen.css';
+import { fetchVendorCalls } from '../../services/dataService';
 
-// Mock Data simulating n8n workflows
-const weeklyStats = {
-    totalMeetings: 12,
-    activeVendors: 8,
-    avgSentiment: 'Positive', // scale ranges
-    reportsGenerated: 4
-};
+export const VendorAnalyticsScreen = ({ agent, onBack, onSelectCall }) => {
+    const [calls, setCalls] = useState([]);
+    const [loading, setLoading] = useState(true);
 
-const vendorMeetings = [
-    { id: 1, vendor: 'Acme Materials', date: '2025-10-24', sentiment: 'High', topics: ['Pricing', 'Logistics'], status: 'Follow-up' },
-    { id: 2, vendor: 'BuildRight Inc', date: '2025-10-23', sentiment: 'Neutral', topics: ['Catalog Review'], status: 'Completed' },
-    { id: 3, vendor: 'GlassXperts', date: '2025-10-22', sentiment: 'Very High', topics: ['Project A spec', 'Sustainability'], status: 'Proposal Rcvd' },
-    { id: 4, vendor: 'SteelCo', date: '2025-10-20', sentiment: 'Low', topics: ['Delay discussion'], status: 'Escalated' },
-    { id: 5, vendor: 'Lumina Lighting', date: '2025-10-18', sentiment: 'High', topics: ['New collection'], status: 'Follow-up' },
-];
+    // Fallback if no agent passed (dev mode)
+    const currentAgent = agent || { name: 'Sofía Martínez', progress: 82.3 };
 
-export const VendorAnalyticsScreen = () => {
-    const [filter, setFilter] = useState('All');
+    useEffect(() => {
+        const loadData = async () => {
+            try {
+                const data = await fetchVendorCalls(currentAgent.id);
+                setCalls(data);
+            } catch (error) {
+                console.error("Failed to load calls", error);
+            } finally {
+                setLoading(false);
+            }
+        };
+        loadData();
+    }, [currentAgent]);
+
+    const getScoreClass = (score) => {
+        if (score >= 80) return 'score-high';
+        if (score >= 60) return 'score-med';
+        return 'score-low';
+    };
 
     return (
-        <div className="vendor-dashboard">
-            <header className="vendor-header">
-                <div>
-                    <h2 className="screen-title">Vendor Analytics</h2>
-                    <p className="screen-subtitle">Insights from Weekly Reports & Meeting Analysis</p>
+        <div className="vendor-screen-container">
+            {/* Header */}
+            <header className="vendor-header-block">
+                <button className="vs-back-btn" onClick={onBack}>
+                    ← Volver al equipo
+                </button>
+                <div className="vendor-header">
+                    <div className="vendor-info-block">
+                        <h1>Dashboard de {currentAgent.name}</h1>
+                        <p>Resumen de rendimiento y llamadas recientes</p>
+                    </div>
                 </div>
-                <button className="btn-primary">Export Report</button>
             </header>
 
-            {/* KPI Cards */}
-            <div className="vendor-kpi-grid">
-                <div className="kpi-card">
-                    <span className="kpi-label">Weekly Meetings</span>
-                    <span className="kpi-value">{weeklyStats.totalMeetings}</span>
+            {/* Top Black Cards */}
+            <section className="vendor-summary-cards">
+                <div className="v-summary-card">
+                    <div>
+                        <div className="v-card-title">Puntaje General</div>
+                        <div className="v-card-value">{currentAgent.progress}%</div>
+                    </div>
+                    <div className="v-card-sub">Basado en las últimas 12 llamadas</div>
                 </div>
-                <div className="kpi-card">
-                    <span className="kpi-label">Active Vendors</span>
-                    <span className="kpi-value">{weeklyStats.activeVendors}</span>
+                <div className="v-summary-card">
+                    <div>
+                        <div className="v-card-title">Oportunidades Activas</div>
+                        <div className="v-card-value">8</div>
+                    </div>
+                    <div className="v-card-sub">2 Cierres previstos esta semana</div>
                 </div>
-                <div className="kpi-card">
-                    <span className="kpi-label">Avg. Sentiment</span>
-                    <span className={`kpi-badge ${weeklyStats.avgSentiment.toLowerCase()}`}>
-                        {weeklyStats.avgSentiment}
-                    </span>
-                </div>
-                <div className="kpi-card">
-                    <span className="kpi-label">Reports Generated</span>
-                    <span className="kpi-value">{weeklyStats.reportsGenerated}</span>
-                </div>
-            </div>
+            </section>
 
-            {/* Main Content Area */}
-            <div className="vendor-content-split">
-                {/* Vendors List / Meeting Analysis */}
-                <section className="vendor-table-section">
-                    <h3>Recent Vendor Meetings</h3>
-                    <div className="table-responsive">
-                        <table className="vendor-table">
-                            <thead>
-                                <tr>
-                                    <th>Vendor</th>
-                                    <th>Date</th>
-                                    <th>Key Topics</th>
-                                    <th>Sentiment</th>
-                                    <th>Status</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {vendorMeetings.map(meeting => (
-                                    <tr key={meeting.id}>
-                                        <td className="fw-medium">{meeting.vendor}</td>
-                                        <td className="text-muted">{meeting.date}</td>
-                                        <td>
-                                            <div className="topics-flex">
-                                                {meeting.topics.map(topic => (
-                                                    <span key={topic} className="topic-tag">{topic}</span>
-                                                ))}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <span className={`sentiment-indicator ${meeting.sentiment.toLowerCase().replace(' ', '-')}`}>
-                                                {meeting.sentiment}
-                                            </span>
-                                        </td>
-                                        <td>{meeting.status}</td>
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </table>
-                    </div>
-                </section>
+            {/* Calls Grid */}
+            <section className="calls-grid-section">
+                <h3>Historial de Llamadas</h3>
+                {loading ? (
+                    <div>Cargando llamadas...</div>
+                ) : (
+                    <div className="calls-grid">
+                        {calls.map(call => (
+                            <div key={call.id} className="call-card" onClick={() => onSelectCall(call)}>
+                                <div className="call-header">
+                                    <span className="client-name">{call.client}</span>
+                                    <span className={`call-score-badge ${getScoreClass(call.score)}`}>
+                                        {call.score}%
+                                    </span>
+                                </div>
+                                <div className="call-date">{call.date}</div>
 
-                {/* Side Panel / Insights */}
-                <aside className="vendor-insights-panel">
-                    <h3>AI Insights</h3>
-                    <div className="insight-card">
-                        <h4>💡 Negotiation Opportunity</h4>
-                        <p>GlassXperts showed very high sentiment regarding sustainability. Consider pushing for the eco-line discount.</p>
+                                <div className="call-details">
+                                    <div className="cd-row">
+                                        <span className="cd-label">Estado:</span>
+                                        <span className="cd-val">{call.status}</span>
+                                    </div>
+                                    <div className="cd-row">
+                                        <span className="cd-label">Próx. Reunión:</span>
+                                        <span className="cd-val">{call.nextMeeting}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
-                    <div className="insight-card warning">
-                        <h4>⚠️ Attention Needed</h4>
-                        <p>SteelCo meeting discussed delays. Recommended action: schedule review call with production manager.</p>
-                    </div>
-                </aside>
-            </div>
+                )}
+            </section>
         </div>
     );
 };

@@ -71,3 +71,18 @@ export const fetchAnalysis = async (agentId) => {
         setTimeout(() => resolve(MOCK_ANALYSIS_DETAIL), 500);
     });
 };
+
+const MOCK_CALLS = [
+    { id: 101, client: 'Javier Mendez', date: '10/01/2026', status: 'Activo', nextMeeting: '15/01/2026 10:00 am', score: 85 },
+    { id: 102, client: 'Constructora Norte', date: '08/01/2026', status: 'Cerrado', nextMeeting: '-', score: 92 },
+    { id: 103, client: 'Estudio Alpha', date: '05/01/2026', status: 'Seguimiento', nextMeeting: '20/01/2026 04:00 pm', score: 78 },
+    { id: 104, client: 'Inmobiliaria Sol', date: '02/01/2026', status: 'Activo', nextMeeting: '12/01/2026 11:30 am', score: 65 },
+    { id: 105, client: 'Grupo Hexagon', date: '28/12/2025', status: 'Perdido', nextMeeting: '-', score: 40 },
+    { id: 106, client: 'Arq. Luis P.', date: '20/12/2025', status: 'Activo', nextMeeting: '18/01/2026 09:00 am', score: 88 },
+];
+
+export const fetchVendorCalls = async (agentId) => {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve(MOCK_CALLS), 400);
+    });
+};
