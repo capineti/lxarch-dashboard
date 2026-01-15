@@ -50,8 +50,9 @@
   /* Slightly warmer light grey matching the screenshot background */
   --bg-sidebar: #FFFFFF;
 
-  --bg-card: #FFFFFF;
-  --bg-card-hover: #F9F9F9;
+  --bg-card: #FAFAFA;
+  /* Very subtle gray instead of pure white */
+  --bg-card-hover: #F2F2F2;
 
   --bg-header-dark: #1a1a1a;
   /* Dark charcoal */
