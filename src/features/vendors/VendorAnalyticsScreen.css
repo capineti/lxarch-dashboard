@@ -155,10 +155,12 @@
 }
 
 .call-card.dark-variant .score-low {
-    background: rgba(248, 113, 113, 0.2);
-    /* Lighter red bg */
-    color: #f87171;
-    /* Lighter red text */
+    background: rgba(220, 38, 38, 0.3);
+    /* Stronger red background for separation */
+    color: #FECACA;
+    /* Very light red for maximum contrast */
+    font-weight: 700;
+    /* Bolder text to help readability */
 }
 
 .call-header {
