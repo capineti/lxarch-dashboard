@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
 import './MainLayout.css';
-import logo from '../../assets/lxarch-logo.svg';
 
 export const MainLayout = ({ children, currentView, onNavigate }) => {
   const [theme, setTheme] = useState(() => {
@@ -35,7 +34,7 @@ export const MainLayout = ({ children, currentView, onNavigate }) => {
       <header className={`layout-header ${isScrolled ? 'scrolled' : ''}`}>
         <div className="header-container">
           <div className="header-logo">
-            <img src={logo} alt="LxArch Logo" className="logo-img" />
+            <img src="/lxarch-logo.svg" alt="LxArch Logo" className="logo-img" />
           </div>
           <div className="header-controls">
             <div className="user-profile">
