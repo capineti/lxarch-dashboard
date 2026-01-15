@@ -69,28 +69,35 @@ export const VendorAnalyticsScreen = ({ agent, onBack, onSelectCall }) => {
                     <div>Cargando llamadas...</div>
                 ) : (
                     <div className="calls-grid">
-                        {calls.map(call => (
-                            <div key={call.id} className="call-card" onClick={() => onSelectCall(call)}>
-                                <div className="call-header">
-                                    <span className="client-name">{call.client}</span>
-                                    <span className={`call-score-badge ${getScoreClass(call.score)}`}>
-                                        {call.score}%
-                                    </span>
-                                </div>
-                                <div className="call-date">{call.date}</div>
+                        {calls.map(call => {
+                            const isDarkVariant = call.status === 'Cerrado' || call.status === 'Perdido';
+                            return (
+                                <div
+                                    key={call.id}
+                                    className={`call-card ${isDarkVariant ? 'dark-variant' : ''}`}
+                                    onClick={() => onSelectCall(call)}
+                                >
+                                    <div className="call-header">
+                                        <span className="client-name">{call.client}</span>
+                                        <span className={`call-score-badge ${getScoreClass(call.score)}`}>
+                                            {call.score}%
+                                        </span>
+                                    </div>
+                                    <div className="call-date">{call.date}</div>
 
-                                <div className="call-details">
-                                    <div className="cd-row">
-                                        <span className="cd-label">Estado:</span>
-                                        <span className="cd-val">{call.status}</span>
-                                    </div>
-                                    <div className="cd-row">
-                                        <span className="cd-label">Próx. Reunión:</span>
-                                        <span className="cd-val">{call.nextMeeting}</span>
+                                    <div className="call-details">
+                                        <div className="cd-row">
+                                            <span className="cd-label">Estado:</span>
+                                            <span className="cd-val">{call.status}</span>
+                                        </div>
+                                        <div className="cd-row">
+                                            <span className="cd-label">Próx. Reunión:</span>
+                                            <span className="cd-val">{call.nextMeeting}</span>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        ))}
+                            );
+                        })}
                     </div>
                 )}
             </section>

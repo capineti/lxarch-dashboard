@@ -114,6 +114,31 @@
     border-color: var(--primary);
 }
 
+/* Dark Variant for specific statuses (Cerrado/Perdido) */
+.call-card.dark-variant {
+    background-color: #222222;
+    /* Dark background matching reference */
+    border: 1px solid #ffffff;
+    /* White border as requested */
+    color: #ffffff;
+}
+
+.call-card.dark-variant .client-name,
+.call-card.dark-variant .call-date,
+.call-card.dark-variant .cd-label,
+.call-card.dark-variant .cd-val {
+    color: #ffffff;
+    /* Force white text for contrast */
+}
+
+/* Hover effects for dark variant */
+.call-card.dark-variant:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    border-color: #ffffff;
+    /* Keep white border on hover */
+    transform: translateY(-4px);
+}
+
 .call-header {
     display: flex;
     justify-content: space-between;
