@@ -29,9 +29,9 @@
 }
 
 .hero-text h1 {
-    font-size: 2.5rem;
-    font-weight: 800;
-    /* Extra bold */
+    font-size: 2.2rem;
+    font-weight: 400;
+    /* Regular weight, finer look */
     color: var(--text-main);
     /* Back to dark text */
     margin-bottom: 0.5rem;
