@@ -1,36 +1,106 @@
-/* Global Design System - LxArch Metrics */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+/* Global Design System - LxArch Metrics (Minimal & Brand Aligned) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Color Palette - Premium Dark/Glass Theme */
-  --bg-app: #0f172a;       /* Deep slate/navy background */
-  --bg-card: #1e293b;      /* Slightly lighter slate for cards */
-  --bg-card-hover: #263345;
-  
-  --primary: #3b82f6;      /* Vibrant Blue */
-  --primary-glow: rgba(59, 130, 246, 0.5);
-  --accent: #10b981;       /* Emerald Green for success/growth */
-  
-  --text-main: #f8fafc;    /* White-ish */
-  --text-muted: #94a3b8;   /* Muted grey */
-  
-  --border: #334155;       /* Subtle border */
-  
+  /* BRAND CORE */
+  --lx-orange: #F0712C;
+  --lx-beige: #E6E0D6;
+  --lx-charcoal: #1C1C1C;
+
+  /* Minimal Functional Palette (Architectural Tones) */
+  --primary: var(--lx-orange);
+
+  /* Phase Colors for Progress Bars - Adjusted to be harmonious */
+  --phase-connection: #3B82F6;
+  /* Vivid Blue (matches screenshot) */
+  --phase-analysis: #F0712C;
+  /* Brand Orange */
+  --phase-offer: #EF4444;
+  /* Primary Red */
+  --phase-closing: #6B7280;
+  /* Neutral Grey */
+
   /* Spacing */
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 1.5rem;
   --space-lg: 2rem;
   --space-xl: 3rem;
-  
+
   /* Radius */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 16px;
+  --radius-full: 9999px;
+
+  --header-height: 80px;
+
   /* Transitions */
   --trans-fast: 0.2s ease;
   --trans-med: 0.3s ease;
+}
+
+/* 
+ * LIGHT MODE - "Minimal Architect"
+ * Usage: High amounts of whitespace, subtle stone borders.
+ */
+:root,
+[data-theme="light"] {
+  --bg-app: #f2f0f0;
+  /* Slightly warmer light grey matching the screenshot background */
+  --bg-sidebar: #FFFFFF;
+
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F9F9F9;
+
+  --bg-header-dark: #1a1a1a;
+  /* Dark charcoal */
+
+  --text-main: #171717;
+  /* Neutral 900 */
+  --text-muted: #737373;
+  /* Neutral 500 */
+
+  --border: #E5E5E5;
+
+  --primary-glow: rgba(240, 113, 44, 0.1);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+
+  /* Glass variables */
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(229, 231, 235, 0.5);
+
+  --gauge-track: rgba(55, 65, 81, 0.1);
+  /* Standard for light mode */
+}
+
+/* 
+ * DARK MODE - "Night Plan"
+ */
+[data-theme="dark"] {
+  --bg-app: #0A0A0A;
+  --bg-sidebar: #000000;
+
+  --bg-card: #1E1E1E;
+  --bg-card-hover: #2C2C2C;
+
+  --bg-header-dark: #000000;
+
+  --text-main: #EDEDED;
+  --text-muted: #A1A1A1;
+
+  --border: #262626;
+
+  --primary-glow: rgba(240, 113, 44, 0.25);
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.5);
+  --shadow-card: 0 10px 20px rgba(0, 0, 0, 0.4);
+
+  --glass-bg: rgba(10, 10, 10, 0.85);
+  --glass-border: rgba(255, 255, 255, 0.05);
+
+  --gauge-track: rgba(255, 255, 255, 0.2);
+  /* Higher contrast for dark mode */
 }
 
 * {
@@ -47,9 +117,12 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-a {
-  text-decoration: none;
-  color: inherit;
+h1,
+h2,
+h3,
+h4,
+.percentage-display {
+  letter-spacing: -0.01em;
 }
 
 button {
@@ -59,21 +132,7 @@ button {
   font-family: inherit;
 }
 
-/* Utilities */
-.u-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 var(--space-md);
-}
-
-.u-flex-center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.u-grid-dashboard {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: var(--space-md);
+/* Utility Classes */
+.u-text-primary {
+  color: var(--primary);
 }

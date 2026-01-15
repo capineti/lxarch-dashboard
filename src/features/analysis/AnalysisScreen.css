@@ -1,0 +1,466 @@
+/* AnalysisDetail Layout */
+.analysis-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.back-btn {
+    align-self: flex-start;
+    color: var(--text-muted);
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: -10px;
+    /* tighten up */
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.back-btn:hover {
+    color: var(--text-main);
+}
+
+/* 
+ * HERO DARK CARD 
+ * Matches the black rounded card with progress phases 
+ */
+/* Header Split Layout - Replaces .analysis-header-card */
+.analysis-header-split {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--space-lg);
+    align-items: stretch;
+}
+
+/* Common Dark Card Styles */
+.header-left-card,
+.header-right-card {
+    background-color: var(--bg-header-dark);
+    color: #fff;
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Left Card Specifics */
+.header-left-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.analysis-subtitle {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #a3a3a3;
+}
+
+.analysis-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+/* Right Card Specifics */
+.header-right-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: var(--space-lg);
+}
+
+/* Summary Block inside Right Card */
+.summary-block h4 {
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+    color: #fff;
+    font-weight: 600;
+}
+
+/* Status Box inside Right Card */
+.summary-status-box {
+    background: #E5E5E5;
+    color: #111;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    margin-top: auto;
+    /* Push to bottom if space available */
+}
+
+.header-main-info h2 {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #a3a3a3;
+}
+
+.header-main-info h3 {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-bottom: var(--space-lg);
+    line-height: 1.2;
+    color: #ffffff;
+}
+
+.meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    margin-bottom: var(--space-xl);
+    gap: var(--space-md);
+}
+
+.meta-item .label {
+    font-size: 0.75rem;
+    color: #737373;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+}
+
+.meta-item .val {
+    font-weight: 600;
+    font-size: 1rem;
+    color: #ffffff;
+}
+
+/* Phases Bar - Gradient style as per screenshot */
+.phases-container {
+    margin-top: auto;
+}
+
+.phases-bar {
+    height: 16px;
+    background: #333;
+    border-radius: 999px;
+    display: flex;
+    overflow: hidden;
+    margin-bottom: 12px;
+    /* Add subtle inner shadow for depth */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.phase-seg {
+    height: 100%;
+    transition: width 0.5s ease;
+}
+
+.phase-seg.blue {
+    background: linear-gradient(90deg, #3B82F6 0%, #60A5FA 100%);
+}
+
+.phase-seg.orange {
+    background: linear-gradient(90deg, #F97316 0%, #FB923C 100%);
+}
+
+.phase-seg.red {
+    background: linear-gradient(90deg, #EF4444 0%, #F87171 100%);
+}
+
+.phase-seg.grey {
+    background: #4B5563;
+}
+
+.phases-legend {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.75rem;
+    color: #a3a3a3;
+    padding: 0 4px;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+}
+
+.legend-item::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+}
+
+.legend-item.blue::before {
+    background-color: #3B82F6;
+}
+
+.legend-item.orange::before {
+    background-color: #F97316;
+}
+
+.legend-item.red::before {
+    background-color: #EF4444;
+}
+
+.legend-item.grey::before {
+    background-color: #4B5563;
+}
+
+
+/* Summary Score Box */
+.header-summary-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.summary-score-box {
+    /* No background on container, just text grouping */
+    padding: var(--space-sm) 0;
+}
+
+.summary-score-box h4 {
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+    color: #fff;
+    font-weight: 600;
+}
+
+.big-score {
+    font-size: 5rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #ffffff;
+    display: flex;
+    align-items: baseline;
+}
+
+.big-score .small {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-left: 8px;
+}
+
+.score-bar-bg {
+    margin-top: 8px;
+    height: 10px;
+    background: #333;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.score-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--lx-orange), #fcba74);
+    border-radius: 5px;
+}
+
+/* Status Box */
+.summary-status-box {
+    background: #E5E5E5;
+    color: #111;
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+}
+
+.status-row {
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.next-step-row {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.85rem;
+}
+
+.orange-text {
+    color: #c2410c;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.date-text {
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+
+/* 
+ * KPI CARDS - PIXEL PERFECT DESIGN
+ * White cards with top-right dot texture and gradient bars
+ */
+.kpi-cards-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+}
+
+.analysis-kpi-card {
+    background: #FFFFFF;
+    padding: var(--space-lg);
+    border-radius: var(--radius-md);
+    /* 16px roughly */
+    box-shadow: var(--shadow-card);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    min-height: 160px;
+    position: relative;
+    overflow: hidden;
+    /* For texture containment */
+}
+
+/* Texture Pattern Top Right */
+.analysis-kpi-card::after {
+    content: '';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 60px;
+    height: 30px;
+    background-image: radial-gradient(#e5e7eb 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
+    opacity: 0.8;
+}
+
+.analysis-kpi-card h4 {
+    font-size: 0.7rem;
+    color: #9CA3AF;
+    /* Light grey label */
+    margin-bottom: var(--space-sm);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    z-index: 1;
+}
+
+.kpi-val {
+    font-size: 3rem;
+    font-weight: 800;
+    /* Extra bold */
+    color: var(--lx-orange);
+    margin-bottom: var(--space-md);
+    line-height: 1;
+    z-index: 1;
+}
+
+.kpi-bar-bg {
+    width: 70%;
+    height: 6px;
+    background: #F3F4F6;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.kpi-bar-fill {
+    height: 100%;
+    /* Gradient from Orange to faded orange as per design */
+    background: linear-gradient(90deg, #F0712C 0%, rgba(240, 113, 44, 0.4) 100%);
+    border-radius: 10px;
+}
+
+
+/* Diagnosis Section */
+.diagnosis-section {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--space-xl);
+    background: #FFFFFF;
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
+}
+
+.diagnosis-left {
+    border-right: 1px solid #F3F4F6;
+    padding-right: var(--space-lg);
+}
+
+.diagnosis-left h3 {
+    font-size: 1.25rem;
+    font-weight: 800;
+    margin-bottom: 4px;
+    color: #111;
+}
+
+.result-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: var(--space-lg);
+    color: #6B7280;
+}
+
+.status-tag.green {
+    color: #10B981;
+    font-weight: 700;
+}
+
+.top-failures-box {
+    background: linear-gradient(180deg, #FFF7ED 0%, #FFFFFF 100%);
+    padding: 0;
+    border-radius: 0;
+    border: none;
+}
+
+.tf-title {
+    background: var(--lx-orange);
+    color: white;
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: var(--space-md);
+}
+
+.fail-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.fail-list li {
+    font-size: 0.95rem;
+    color: #374151;
+    font-weight: 500;
+}
+
+.fail-list li::before {
+    content: '■';
+    color: var(--lx-orange);
+    font-size: 0.7rem;
+    margin-right: 8px;
+}
+
+.diagnosis-right h4 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: var(--space-sm);
+    color: #111;
+}
+
+.issue-desc {
+    color: #4B5563;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+.action-required-block h5 {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    font-weight: 800;
+    margin-bottom: var(--space-md);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.action-list li {
+    color: #374151;
+    margin-bottom: 8px;
+}

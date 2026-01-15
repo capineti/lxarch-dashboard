@@ -1,0 +1,189 @@
+.agent-screen-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding-bottom: var(--space-lg);
+    /* Match the gap spacing at the bottom */
+}
+
+/* Hero Section */
+/* Hero Section */
+.dashboard-hero {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-lg) 0;
+    /* Remove horizontal padding, align with container */
+    /* Margin removed to rely on container gap for equal spacing */
+    position: relative;
+}
+
+/* Overlay removed for light image clarity */
+.dashboard-hero::before {
+    display: none;
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-text h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    /* Extra bold */
+    color: var(--text-main);
+    /* Back to dark text */
+    margin-bottom: 0.5rem;
+    text-shadow: none;
+}
+
+.hero-text p {
+    font-size: 1.1rem;
+    color: #ffffff;
+    /* White text as requested */
+    font-weight: 700;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    /* Slight shadow for readability against light bg if needed, though users requested white */
+}
+
+/* Adjust gauge card z-index to sit above overlay */
+.hero-gauge-card {
+    position: relative;
+    z-index: 2;
+    background: var(--bg-card);
+    /* keep separate card bg */
+    padding: var(--space-xl);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 400px;
+    box-shadow: var(--shadow-card);
+}
+
+
+
+
+
+/* Grid */
+.agents-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    padding: 0 12px;
+    /* Internal padding */
+}
+
+/* Agent Card */
+.agent-card {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding: var(--space-md);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+
+.agent-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.agent-header {
+    display: flex;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-sm);
+    align-items: flex-start;
+}
+
+.agent-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #f3f4f6;
+}
+
+.agent-title {
+    display: flex;
+    flex-direction: column;
+}
+
+.agent-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--text-main);
+    margin-bottom: 4px;
+}
+
+.agent-score {
+    /* Aligns big percentage layout */
+}
+
+.score-value {
+    font-size: 2.2rem;
+    font-weight: 400;
+    /* Light/Regular */
+    line-height: 1;
+    color: var(--text-main);
+}
+
+/* Progress Bar customized */
+.progress-container {
+    margin-bottom: var(--space-md);
+}
+
+.progress-track {
+    height: 8px;
+    background-color: #f3f4f6;
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    /* Solid Orange */
+    border-radius: 4px;
+}
+
+/* Footer Section */
+.agent-footer {
+    background: var(--bg-app);
+    /* specific grey background block in card */
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.status-row,
+.next-action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    flex-wrap: wrap;
+}
+
+.status-label,
+.action-label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    color: var(--text-main);
+}
+
+.status-val,
+.action-val {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.action-label {
+    color: var(--primary);
+}
