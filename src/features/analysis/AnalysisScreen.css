@@ -480,8 +480,8 @@
     color: var(--text-main);
     line-height: 1.6;
     font-weight: 500;
-    margin-bottom: 2rem;
-    /* Adjusted to align 1. with 1.1 */
+    margin-bottom: 1.25rem;
+    /* Raised to align 1. with 1.1 */
 }
 
 .action-required-block h5 {
