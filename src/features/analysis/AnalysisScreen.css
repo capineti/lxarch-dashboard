@@ -386,8 +386,8 @@
     position: relative;
     z-index: 10;
     transition: margin-top 0.25s ease-out;
-    margin-top: 3rem;
-    /* Increased to prevent overlap */
+    margin-top: 6rem;
+    /* Aumentado agresivamente para forzar separación */
     /* Reduced margin */
     display: grid;
     grid-template-columns: 1fr 2fr;
