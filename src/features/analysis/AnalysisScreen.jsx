@@ -7,7 +7,7 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     const [analysisData, setAnalysisData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isCompact, setIsCompact] = useState(false);
-    const containerRef = useRef(null);
+    const sentinelRef = useRef(null);
 
     // Use passed agent or fallback to local variable for display before data loads
     const currentAgent = agent || { name: 'Sofía Martínez' };
@@ -28,29 +28,23 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     }, [currentAgent]);
 
     useEffect(() => {
-        if (loading) return;
+        if (loading || !sentinelRef.current) return;
 
-        const timer = setTimeout(() => {
-            const element = containerRef.current;
-            let scroller = element?.closest('.layout-main');
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                // When sentinel goes OUT of view (scrolling down), compact mode ON
+                setIsCompact(!entry.isIntersecting);
+            },
+            {
+                threshold: 0,
+                // Trigger when the element passes the top edge + offset
+                rootMargin: '-80px 0px 0px 0px'
+            }
+        );
 
-            if (!scroller) scroller = document.querySelector('.layout-main');
-            if (!scroller) scroller = window;
+        observer.observe(sentinelRef.current);
 
-            const handleScroll = () => {
-                const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
-                setIsCompact(scrollTop > 50);
-            };
-
-            scroller.addEventListener('scroll', handleScroll);
-            handleScroll();
-
-            return () => {
-                if (scroller) scroller.removeEventListener('scroll', handleScroll);
-            };
-        }, 100);
-
-        return () => clearTimeout(timer);
+        return () => observer.disconnect();
     }, [loading]);
 
     if (loading || !analysisData) {
@@ -58,7 +52,9 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     }
 
     return (
-        <div ref={containerRef} className={`analysis-container ${isCompact ? 'mode-compact' : ''}`}>
+        <div className={`analysis-container ${isCompact ? 'mode-compact' : ''}`}>
+            {/* Sentinel for Scroll Detection (Absolute to avoid layout shift issues) */}
+            <div ref={sentinelRef} className="scroll-sentinel" style={{ position: 'absolute', top: 0, height: '100px', width: '100%', pointerEvents: 'none', visibility: 'hidden' }} />
 
             <div className="sticky-header-wrapper">
                 {/* Back Button */}
