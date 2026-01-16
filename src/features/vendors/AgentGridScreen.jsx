@@ -91,7 +91,7 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                             {/* Generated Ticks */}
                             {Array.from({ length: 60 }).map((_, i) => {
                                 const totalTicks = 60;
-                                const currentPercentage = 73; // Adjusted to visually hit the 70 mark perfectly
+                                const currentPercentage = 75; // Reverted to real value logic
                                 const tickPercentage = (i / (totalTicks - 1)) * 100;
 
                                 if (tickPercentage > currentPercentage) return null;
@@ -125,12 +125,15 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                                 );
                             })}
 
-                            {/* Labels - positioned above the arc */}
+                            {/* Labels - positioned accurately on the arc (Radius ~190) */}
                             <g className="gauge-labels" style={{ fontSize: '12px', fill: 'var(--text-muted)', fontWeight: '500' }}>
                                 <text x="15" y="200" textAnchor="end">0%</text>
-                                <text x="60" y="70" textAnchor="middle">45%</text>
-                                <text x="200" y="10" textAnchor="middle">50%</text>
-                                <text x="340" y="70" textAnchor="middle">70%</text>
+                                {/* 45% is at 81 degrees (from left) -> ~261 deg polar */}
+                                <text x="165" y="35" textAnchor="middle">45%</text>
+                                {/* 50% is at 90 degrees (top) */}
+                                <text x="200" y="20" textAnchor="middle">50%</text>
+                                {/* 70% is at 126 degrees -> ~306 deg polar */}
+                                <text x="315" y="60" textAnchor="middle">70%</text>
                                 <text x="385" y="200" textAnchor="start">100%</text>
                             </g>
                         </svg>
