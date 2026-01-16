@@ -409,6 +409,11 @@
     padding-right: var(--space-lg);
 }
 
+[data-theme="dark"] .diagnosis-left {
+    border-right-color: rgba(255, 255, 255, 0.15);
+    /* Visible separator in dark mode */
+}
+
 .diagnosis-left h3 {
     font-size: 1.25rem;
     font-weight: 800;
