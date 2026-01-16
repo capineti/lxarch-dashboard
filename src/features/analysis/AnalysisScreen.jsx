@@ -6,8 +6,6 @@ import { fetchAnalysis } from '../../services/dataService';
 export const AnalysisScreen = ({ agent, onBack }) => {
     const [analysisData, setAnalysisData] = useState(null);
     const [loading, setLoading] = useState(true);
-    const [isCompact, setIsCompact] = useState(false);
-    const sentinelRef = useRef(null);
 
     // Use passed agent or fallback to local variable for display before data loads
     const currentAgent = agent || { name: 'Sofía Martínez' };
@@ -27,110 +25,79 @@ export const AnalysisScreen = ({ agent, onBack }) => {
         loadData();
     }, [currentAgent]);
 
-    useEffect(() => {
-        if (loading || !sentinelRef.current) return;
-
-        const observer = new IntersectionObserver(
-            ([entry]) => {
-                // When sentinel goes OUT of view (scrolling down), compact mode ON
-                setIsCompact(!entry.isIntersecting);
-            },
-            {
-                threshold: 0,
-                // Trigger when the element passes the top edge + offset
-                rootMargin: '-80px 0px 0px 0px'
-            }
-        );
-
-        observer.observe(sentinelRef.current);
-
-        return () => observer.disconnect();
-    }, [loading]);
-
     if (loading || !analysisData) {
         return <div className="p-10 text-center">Cargando análisis...</div>;
     }
 
     return (
-        <div className={`analysis-container ${isCompact ? 'mode-compact' : ''}`}>
-            {/* Sentinel for Scroll Detection (Absolute to avoid layout shift issues) */}
-            <div ref={sentinelRef} className="scroll-sentinel" style={{ position: 'absolute', top: 0, height: '100px', width: '100%', pointerEvents: 'none', visibility: 'hidden' }} />
+        <div className="analysis-container">
+            {/* Back Button */}
+            <button className="back-btn" onClick={onBack}>
+                ← Volver
+            </button>
 
-            <div className="sticky-header-wrapper">
-                {/* Back Button */}
-                <button className="back-btn" onClick={onBack}>
-                    ← Volver
-                </button>
+            {/* Header Split Section */}
+            <section className="analysis-header-split">
+                {/* Left Card: Main Info & Phase Bar */}
+                <div className="header-left-card">
+                    <h2 className="analysis-subtitle">Análisis de venta de {currentAgent.name}</h2>
+                    <h1 className="analysis-title">{analysisData.topic}</h1>
 
-                {/* Header Split Section */}
-                <section className="analysis-header-split">
-                    {/* Left Card: Main Info & Phase Bar */}
-                    <div className="header-left-card">
-                        <div className="header-title-block">
-                            <h2 className="analysis-subtitle">Análisis de venta de {currentAgent.name}</h2>
-                            <h1 className="analysis-title">{analysisData.topic}</h1>
+                    <div className="meta-grid">
+                        <div className="meta-item">
+                            <span className="label">Cliente</span>
+                            <span className="val">{analysisData.client}</span>
                         </div>
-
-                        <div className="meta-grid">
-                            <div className="meta-item">
-                                <span className="label">Cliente</span>
-                                <span className="val">{analysisData.client}</span>
-                            </div>
-                            <div className="meta-item">
-                                <span className="label">Vendedor</span>
-                                <span className="val">{currentAgent.name}</span>
-                            </div>
-                            <div className="meta-item">
-                                <span className="label">Fecha la llamada</span>
-                                <span className="val">{analysisData.date}</span>
-                            </div>
+                        <div className="meta-item">
+                            <span className="label">Vendedor</span>
+                            <span className="val">{currentAgent.name}</span>
                         </div>
-
-                        {/* Progress Bar (Phases) */}
-                        <div className="phases-container">
-                            <div className="phases-bar">
-                                <div className="phase-seg blue" style={{ width: '15%' }}></div>
-                                <div className="phase-seg orange" style={{ width: '45%' }}></div>
-                                <div className="phase-seg red" style={{ width: '30%' }}></div>
-                                <div className="phase-seg grey" style={{ width: '10%' }}></div>
-                            </div>
-                            <div className="phases-legend">
-                                <span className="legend-item blue">Conexión (15%)</span>
-                                <span className="legend-item orange">Análisis (45%)</span>
-                                <span className="legend-item red">Oferta (30%)</span>
-                                <span className="legend-item grey">Cierre (10%)</span>
-                            </div>
+                        <div className="meta-item">
+                            <span className="label">Fecha la llamada</span>
+                            <span className="val">{analysisData.date}</span>
                         </div>
                     </div>
 
-                    {/* Right Card: Summary & Status */}
-                    <div className="header-right-card">
-                        <div className="summary-block">
-                            <div className="summary-title-wrapper">
-                                <h4>Summary</h4>
-                            </div>
-                            <div className="big-score">
-                                {analysisData.summary.interest} <span className="small">% interés</span>
-                            </div>
-                            <div className="score-bar-bg">
-                                <div className="score-bar-fill" style={{ width: `${analysisData.summary.interest}%` }}></div>
-                            </div>
+                    {/* Progress Bar (Phases) */}
+                    <div className="phases-container">
+                        <div className="phases-bar">
+                            <div className="phase-seg blue" style={{ width: '15%' }}></div>
+                            <div className="phase-seg orange" style={{ width: '45%' }}></div>
+                            <div className="phase-seg red" style={{ width: '30%' }}></div>
+                            <div className="phase-seg grey" style={{ width: '10%' }}></div>
                         </div>
-
-                        <div className="status-box-wrapper">
-                            <div className="summary-status-box">
-                                <div className="status-row">
-                                    <span>Estado Actual:</span> <span className="status-val">{analysisData.summary.status}</span>
-                                </div>
-                                <div className="next-step-row">
-                                    <span className="orange-text">{analysisData.summary.nextStep}</span>
-                                    <span className="date-text">{analysisData.summary.nextDate}</span>
-                                </div>
-                            </div>
+                        <div className="phases-legend">
+                            <span className="legend-item blue">Conexión (15%)</span>
+                            <span className="legend-item orange">Análisis (45%)</span>
+                            <span className="legend-item red">Oferta (30%)</span>
+                            <span className="legend-item grey">Cierre (10%)</span>
                         </div>
                     </div>
-                </section>
-            </div>
+                </div>
+
+                {/* Right Card: Summary & Status */}
+                <div className="header-right-card">
+                    <div className="summary-block">
+                        <h4>Summary</h4>
+                        <div className="big-score">
+                            {analysisData.summary.interest} <span className="small">% interés</span>
+                        </div>
+                        <div className="score-bar-bg">
+                            <div className="score-bar-fill" style={{ width: `${analysisData.summary.interest}%` }}></div>
+                        </div>
+                    </div>
+
+                    <div className="summary-status-box">
+                        <div className="status-row">
+                            <span>Estado Actual:</span> <span className="status-val">{analysisData.summary.status}</span>
+                        </div>
+                        <div className="next-step-row">
+                            <span className="orange-text">{analysisData.summary.nextStep}</span>
+                            <span className="date-text">{analysisData.summary.nextDate}</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
 
             {/* KPI Cards Row */}
             <section className="kpi-cards-row">
