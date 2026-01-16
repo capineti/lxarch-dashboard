@@ -143,27 +143,7 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                             <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '5px' }}>Media del equipo</div>
                         </div>
 
-                        {/* Floating Badge (Pill) - Adjusted position for new size */}
-                        <div style={{
-                            position: 'absolute',
-                            top: '100px',
-                            right: '25px', /* Slightly adjusted position */
-                            background: 'rgba(255,255,255,0.9)',
-                            backdropFilter: 'blur(8px)',
-                            padding: '6px 14px',
-                            borderRadius: '30px',
-                            boxShadow: '0 4px 15px rgba(0,0,0,0.15)',
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '6px',
-                            fontSize: '0.9rem',
-                            color: '#15803d', /* Green 700 */
-                            fontWeight: '600',
-                            border: '1px solid rgba(255,255,255,0.5)',
-                            zIndex: 10
-                        }}>
-                            <span style={{ fontSize: '10px' }}>▲</span> 5 pts
-                        </div>
+
                     </div>
                 </div>
             </section>
