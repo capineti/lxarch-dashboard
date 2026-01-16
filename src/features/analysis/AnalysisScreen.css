@@ -557,14 +557,7 @@
     margin-bottom: var(--space-lg);
 }
 
-/* COMPACT MODE: Hide with max-height */
-.state-compact .collapsible-header-content,
-.state-compact .collapsible-title,
-.state-compact .collapsible-status-box {
-    max-height: 0;
-    opacity: 0;
-    margin-bottom: 0;
-}
+
 
 .state-compact .collapsible-kpi-section {
     max-height: 0;
