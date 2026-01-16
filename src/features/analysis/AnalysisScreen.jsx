@@ -29,20 +29,38 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     useEffect(() => {
         if (loading) return;
 
-        const element = containerRef.current;
-        if (!element) return;
+        // Small timeout to ensure DOM is ready
+        const timer = setTimeout(() => {
+            const element = containerRef.current;
+            // 1. Try closest
+            let scroller = element?.closest('.layout-main');
 
-        const scroller = element.closest('.layout-main') || window;
+            // 2. Try global query if closest fails (e.g. widely separated in DOM)
+            if (!scroller) {
+                scroller = document.querySelector('.layout-main');
+            }
 
-        const handleScroll = () => {
-            const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
-            setIsCompact(scrollTop > 50);
-        };
+            // 3. Fallback to window
+            if (!scroller) {
+                scroller = window;
+            }
 
-        scroller.addEventListener('scroll', handleScroll);
-        handleScroll(); // Initial check
+            const handleScroll = () => {
+                const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
+                // Use a slightly larger threshold to avoid jitter
+                setIsCompact(scrollTop > 20);
+            };
 
-        return () => scroller.removeEventListener('scroll', handleScroll);
+            scroller.addEventListener('scroll', handleScroll);
+            handleScroll(); // Initial check
+
+            // Cleanup
+            return () => {
+                if (scroller) scroller.removeEventListener('scroll', handleScroll);
+            };
+        }, 100);
+
+        return () => clearTimeout(timer);
     }, [loading]);
 
     if (loading || !analysisData) {
