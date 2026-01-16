@@ -465,24 +465,52 @@
 
 
 /* --- Scroll Interaction Styles --- */
-
 .sticky-header-wrapper {
     position: sticky;
-    top: 100px;
-    /* 80px Navbar + 20px Gap */
-    z-index: 9;
-    /* Below Navbar (10), but above content */
+    top: 80px;
+    /* Reduced from 100px to sit right under nav */
+    z-index: 20;
     transition: all 0.4s ease;
     padding-bottom: 20px;
-    /* Space below */
+    margin: 0 -20px;
+    /* Expand to cover side padding gaps if any */
+    padding-left: 20px;
+    padding-right: 20px;
+    pointer-events: none;
+    /* Clicks pass through gaps */
+    /* Create a backing for readable text when overlapping */
+}
+
+.sticky-header-wrapper>* {
+    pointer-events: auto;
+    /* Children are clickable */
+}
+
+/* Compact Mode background */
+.mode-compact .sticky-header-wrapper {
+    background: rgba(242, 240, 240, 0.95);
+    /* Matches light theme bg */
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    padding-top: 10px;
+    /* Adjust spacing */
+}
+
+/* Dark mode override */
+[data-theme="dark"] .mode-compact .sticky-header-wrapper {
+    background: rgba(10, 10, 10, 0.95);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Transitions for cards */
 .header-left-card,
 .header-right-card {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    /* Smooth but fast */
-    will-change: padding, height;
+    will-change: padding, height, background;
+    /* Ensure they stay above the wrapper background if needed */
+    position: relative;
+    z-index: 21;
 }
 
 /* Compact Mode Adjustments */

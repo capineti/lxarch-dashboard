@@ -6,6 +6,7 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     const [analysisData, setAnalysisData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [isCompact, setIsCompact] = useState(false);
+    const containerRef = useRef(null);
 
     // Use passed agent or fallback to local variable for display before data loads
     const currentAgent = agent || { name: 'Sofía Martínez' };
@@ -26,28 +27,32 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     }, [currentAgent]);
 
     useEffect(() => {
-        const mainContainer = document.querySelector('.layout-main');
-        if (!mainContainer) return;
+        if (loading) return; // Wait for content
+
+        // Find the scrolling parent (MainLayout)
+        const element = containerRef.current;
+        if (!element) return;
+
+        const scroller = element.closest('.layout-main') || window;
 
         const handleScroll = () => {
-            // Check scroll position of the main container, not window
-            if (mainContainer.scrollTop > 50) {
-                setIsCompact(true);
-            } else {
-                setIsCompact(false);
-            }
+            const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
+            setIsCompact(scrollTop > 50);
         };
 
-        mainContainer.addEventListener('scroll', handleScroll);
-        return () => mainContainer.removeEventListener('scroll', handleScroll);
-    }, []);
+        scroller.addEventListener('scroll', handleScroll);
+        // Trigger once to set initial state
+        handleScroll();
+
+        return () => scroller.removeEventListener('scroll', handleScroll);
+    }, [loading]);
 
     if (loading || !analysisData) {
         return <div className="p-10 text-center">Cargando análisis...</div>;
     }
 
     return (
-        <div className={`analysis-container ${isCompact ? 'mode-compact' : ''}`}>
+        <div ref={containerRef} className={`analysis-container ${isCompact ? 'mode-compact' : ''}`}>
 
             {/* Header Split Section - Sticky */}
             <div className="sticky-header-wrapper">
