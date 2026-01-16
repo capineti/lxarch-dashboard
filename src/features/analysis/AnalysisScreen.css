@@ -463,7 +463,155 @@
     text-transform: uppercase;
 }
 
-.action-list li {
-    color: #374151;
-    margin-bottom: 8px;
+
+/* --- Scroll Interaction Styles --- */
+
+.sticky-header-wrapper {
+    position: sticky;
+    top: 10px;
+    /* Gap from top navbar */
+    z-index: 50;
+    transition: all 0.4s ease;
+    /* Ensure it sits above scrolling content */
+}
+
+/* Transitions for cards */
+.header-left-card,
+.header-right-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Smooth but fast */
+    will-change: padding, height;
+}
+
+/* Compact Mode Adjustments */
+.mode-compact .header-left-card,
+.mode-compact .header-right-card {
+    padding: var(--space-md) var(--space-lg);
+    /* Even tighter padding */
+    border-radius: var(--radius-md);
+    min-height: 80px;
+    /* Force reduced height */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+}
+
+/* Back Button Fade */
+.back-btn {
+    transition: opacity 0.3s ease, margin 0.3s ease;
+}
+
+.back-btn.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    margin-bottom: -30px;
+    /* Pull header up */
+}
+
+/* Content Toggling */
+.header-content-full {
+    transition: opacity 0.3s ease, max-height 0.4s ease, margin 0.3s ease;
+    max-height: 500px;
+    /* Arbitrary large value */
+    opacity: 1;
+}
+
+.mode-compact .header-content-full {
+    opacity: 0;
+    max-height: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+/* Compact Content Styling */
+.header-content-compact {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    /* Changed from none to allow transition */
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    transition: opacity 0.3s ease 0.2s;
+    /* Delayed fade in */
+}
+
+.mode-compact .header-content-compact {
+    opacity: 1;
+    max-height: 100px;
+}
+
+/* Compact Row Items */
+.compact-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.c-label {
+    font-size: 0.75rem;
+    color: #737373;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.c-val {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.c-val.last {
+    margin-right: 0;
+}
+
+/* Right Card Specifics for Compact */
+.summary-block h4.hidden {
+    display: none;
+}
+
+/* Status Block Wrapper Transition */
+.status-block-wrapper {
+    transition: all 0.4s ease;
+    max-height: 200px;
+    opacity: 1;
+    margin-top: auto;
+}
+
+.status-block-wrapper.fade-out-height {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+/* Vertical align score in compact mode */
+.mode-compact .header-right-card {
+    justify-content: center;
+}
+
+/* KPI Collapsible Wrapper */
+.kpi-collapsible-wrapper {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height: 400px;
+    /* Enough for the cards */
+    opacity: 1;
+    overflow: hidden;
+    transform: translateY(0);
+}
+
+.kpi-collapsible-wrapper.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    transform: translateY(-20px);
+    /* Slide up effect */
+}
+
+/* Diagnosis Section moves up automatically due to collapsible wrapper */
+.diagnosis-section {
+    transition: transform 0.4s ease;
+    /* Smooth movement */
 }
