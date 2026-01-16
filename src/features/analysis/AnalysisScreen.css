@@ -482,149 +482,165 @@
 .sticky-header-container {
     position: sticky;
     top: 80px;
-    /* Adjust based on your Navbar height */
+    /* Adjust based on navbar height */
     z-index: 50;
     margin: 0 -20px;
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 0 20px;
+    /* Remove bottom padding initially to reduce gap */
     background: transparent;
-    /* Card backgrounds do the work */
-    transition: all 0.5s ease-out;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* OPAQUE BACKGROUND for compact mode to cover content */
+/* COMPACT STATE: Opaque background & layout shifts */
 .state-compact .sticky-header-container {
     background-color: var(--bg-app);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    /* Subtle shadow */
+    padding-bottom: 20px;
+    /* Add padding when sticky to frame it */
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
 }
 
 [data-theme="dark"] .state-compact .sticky-header-container {
     background-color: var(--bg-app);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
-
-/* Collapsible Section Transitions */
+/* Collapsible Elements: height & opacity transition */
 .collapsible-header-content,
 .collapsible-title,
 .collapsible-status-box,
 .collapsible-kpi-section {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     max-height: 500px;
-    /* Approximate max height */
     opacity: 1;
     overflow: hidden;
+    transform-origin: top;
 }
 
-/* KPI Section needs to slide up/away smoothly */
+/* KPI Section specific spacing */
 .collapsible-kpi-section {
     margin-bottom: var(--space-lg);
 }
 
-/* Back Button Fade */
+/* Back Button Transition */
 .back-btn {
-    transition: opacity 0.3s ease, margin 0.3s ease;
+    transition: all 0.3s ease;
+    max-height: 50px;
+    margin-bottom: -10px;
 }
 
-/* --- STATE: COMPACT (Scroll Down) --- */
+/* --- STATE: COMPACT ACTIVATED --- */
 
-/* Hide Content */
+/* Hide collapsible elements completely */
 .state-compact .collapsible-header-content,
 .state-compact .collapsible-title,
 .state-compact .collapsible-status-box,
 .state-compact .collapsible-kpi-section {
     max-height: 0;
     opacity: 0;
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+    pointer-events: none;
 }
 
 /* Hide Back Button */
 .state-compact .back-btn {
     opacity: 0;
-    pointer-events: none;
-    margin-bottom: -30px;
+    max-height: 0;
+    margin: 0;
 }
 
-/* Card Styling Changes */
+/* Card Transformations */
 .header-left-card,
 .header-right-card {
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: padding, width, flex;
 }
 
 .state-compact .header-left-card,
 .state-compact .header-right-card {
-    padding: 1.5rem;
-    /* Reduced padding */
+    padding: 1.25rem 1.5rem;
+    /* Compact padding */
     gap: 0;
-    /* Tighten gaps */
-}
-
-/* Meta Grid Adjustments */
-.meta-grid {
-    transition: margin 0.5s ease;
-}
-
-.state-compact .meta-grid {
-    margin-bottom: 1rem;
-}
-
-/* Right Card: Flex Row Transformation */
-.state-compact .header-right-card {
-    /* Mimic the flex row layout from user sample */
-    flex-direction: row;
-    align-items: center;
+    min-height: 100px;
+    /* Ensure consistent height */
     justify-content: center;
-    gap: 1.5rem;
+    /* Center content vertically */
 }
 
+/* Right Card: Layout Shift */
+/* We keep it flex-col but change how children behave */
+.header-right-card {
+    display: flex;
+    flex-direction: column;
+}
+
+.state-compact .header-right-card {
+    /* Switch to row-like alignment via direct Flex properties on wrapper */
+    justify-content: center;
+}
+
+/* Wrapper for Score */
 .summary-score-wrapper {
     transition: all 0.5s ease;
     width: 100%;
 }
 
-/* Transform Score Display in Compact Mode */
 .state-compact .summary-score-wrapper {
     display: flex;
     flex-direction: row;
-    /* Horizontal layout */
     align-items: center;
     justify-content: center;
     gap: 1.5rem;
+    padding-top: 0;
+}
+
+/* Score Text Resizing */
+.big-score {
+    transition: font-size 0.5s ease;
 }
 
 .state-compact .big-score {
-    font-size: 3.5rem;
-    /* Smaller font */
-    margin: 0;
+    font-size: 3rem;
+    line-height: 1;
 }
 
 .state-compact .big-score .small {
     font-size: 1rem;
+    align-self: center;
 }
 
-/* Adjust bar for compact horizontal layout */
+/* Bar Resizing */
+.score-bar-bg {
+    transition: width 0.5s ease;
+}
+
 .state-compact .score-bar-bg {
-    width: 120px;
-    /* Fixed width bar */
+    width: 100px;
     height: 8px;
     margin-top: 0;
 }
 
-/* Ensure Diagnosis Section is ready to scroll under or act normally */
+/* Left Card: Meta Grid Adjustment */
+.meta-grid {
+    transition: margin 0.5s ease;
+}
+
+.state-compact .meta-grid {
+    margin-bottom: 0.5rem;
+}
+
+/* Diagnosis Section: Ensure it flows correctly */
 .diagnosis-section {
     position: relative;
     z-index: 10;
     transition: transform 0.5s ease;
 }
 
-/* Adjust Phases Bar in compact */
+/* Phases Bar compaction */
 .phases-bar {
     transition: height 0.3s ease;
 }
 
 .state-compact .phases-bar {
-    height: 8px;
-    /* Thinner bar */
-    margin-bottom: 8px;
+    height: 6px;
+    margin-bottom: 0;
 }
