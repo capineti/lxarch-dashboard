@@ -485,8 +485,9 @@
     z-index: 50;
     margin: 0 -20px;
     padding: 0 20px 20px 20px;
-    background: transparent;
-    transition: background-color 0.3s ease;
+    background-color: var(--bg-app);
+    /* Always opaque */
+    transition: all 0.5s ease-out;
 }
 
 /* Compact State: Add background */
@@ -517,12 +518,36 @@
     margin-bottom: 10px;
 }
 
-/* COMPACT MODE: Simply hide elements with display none */
+/* Collapsible elements - use max-height like reference code */
+.collapsible-header-content,
+.collapsible-title,
+.collapsible-status-box {
+    transition: all 0.3s ease-out;
+    max-height: 200px;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.collapsible-kpi-section {
+    transition: all 0.5s ease-out;
+    max-height: 500px;
+    opacity: 1;
+    overflow: hidden;
+}
+
+/* COMPACT MODE: Hide with max-height */
 .state-compact .collapsible-header-content,
 .state-compact .collapsible-title,
-.state-compact .collapsible-status-box,
+.state-compact .collapsible-status-box {
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
+}
+
 .state-compact .collapsible-kpi-section {
-    display: none !important;
+    max-height: 0;
+    opacity: 0;
+    margin-bottom: 0;
 }
 
 /* Back button fade */
