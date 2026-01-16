@@ -134,7 +134,7 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                         </svg>
 
                         {/* Center Text */}
-                        <div style={{ position: 'absolute', bottom: '0px', textAlign: 'center', width: '100%', paddingBottom: '10px' }}>
+                        <div style={{ position: 'absolute', bottom: '20px', textAlign: 'center', width: '100%' }}>
                             <div style={{ fontSize: '4.5rem', lineHeight: '0.8', fontWeight: '300', color: 'var(--text-main)', letterSpacing: '-2px' }}>
                                 75<span style={{ fontSize: '2rem' }}>%</span>
                             </div>
