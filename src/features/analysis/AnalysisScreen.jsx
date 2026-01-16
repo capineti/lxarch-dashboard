@@ -26,16 +26,20 @@ export const AnalysisScreen = ({ agent, onBack }) => {
     }, [currentAgent]);
 
     useEffect(() => {
+        const mainContainer = document.querySelector('.layout-main');
+        if (!mainContainer) return;
+
         const handleScroll = () => {
-            if (window.scrollY > 50) {
+            // Check scroll position of the main container, not window
+            if (mainContainer.scrollTop > 50) {
                 setIsCompact(true);
             } else {
                 setIsCompact(false);
             }
         };
 
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
+        mainContainer.addEventListener('scroll', handleScroll);
+        return () => mainContainer.removeEventListener('scroll', handleScroll);
     }, []);
 
     if (loading || !analysisData) {

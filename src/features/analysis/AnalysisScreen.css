@@ -468,11 +468,13 @@
 
 .sticky-header-wrapper {
     position: sticky;
-    top: 10px;
-    /* Gap from top navbar */
-    z-index: 50;
+    top: 100px;
+    /* 80px Navbar + 20px Gap */
+    z-index: 9;
+    /* Below Navbar (10), but above content */
     transition: all 0.4s ease;
-    /* Ensure it sits above scrolling content */
+    padding-bottom: 20px;
+    /* Space below */
 }
 
 /* Transitions for cards */
