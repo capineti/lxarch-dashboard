@@ -53,7 +53,8 @@
 .vendor-summary-cards {
     display: flex;
     gap: var(--space-lg);
-    margin-bottom: var(--space-lg);
+    margin-bottom: 4rem;
+    /* Increased breathing room before History */
 }
 
 /* Base Card Style */
