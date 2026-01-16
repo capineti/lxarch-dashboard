@@ -502,13 +502,13 @@
 
 /* Dynamic Spacer - prevents content from going under sticky header */
 .header-spacer {
-    height: 280px;
-    /* Reduced to bring diagnosis closer */
+    height: 80px;
+    /* Much smaller - bring KPIs close to header */
     transition: height 0.25s ease-out;
 }
 
 .header-spacer.compact {
-    height: 120px;
+    height: 40px;
     /* Compact state */
 }
 
