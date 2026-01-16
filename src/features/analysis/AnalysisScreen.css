@@ -480,6 +480,8 @@
     color: var(--text-main);
     line-height: 1.6;
     font-weight: 500;
+    margin-bottom: 3rem;
+    /* Push Action Required down to align lists */
 }
 
 .action-required-block h5 {
