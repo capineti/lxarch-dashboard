@@ -499,6 +499,24 @@
     background-color: var(--bg-app);
 }
 
+/* Dynamic Spacer - prevents content from going under sticky header */
+.header-spacer {
+    height: 420px;
+    /* Normal state: full header height */
+    transition: height 0.5s ease-out;
+}
+
+.header-spacer.compact {
+    height: 180px;
+    /* Compact state: reduced header height */
+}
+
+/* Back Button - positioned inside sticky container */
+.back-btn {
+    transition: opacity 0.3s ease;
+    margin-bottom: 10px;
+}
+
 /* COMPACT MODE: Simply hide elements with display none */
 .state-compact .collapsible-header-content,
 .state-compact .collapsible-title,
