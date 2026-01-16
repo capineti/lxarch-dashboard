@@ -51,20 +51,23 @@
 .header-left-card {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    /* Stack content at top to keep height manageable */
+    justify-content: flex-start;
+    gap: var(--space-sm);
+    /* Tighter gap between main blocks */
 }
 
 .analysis-subtitle {
     font-size: 1rem;
     font-weight: 500;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
     color: #a3a3a3;
 }
 
 .analysis-title {
     font-size: 1.75rem;
     font-weight: 700;
-    margin-bottom: var(--space-md);
+    margin-bottom: var(--space-sm);
     /* Reduced margin */
     line-height: 1.2;
     color: #ffffff;
@@ -115,7 +118,8 @@
 .meta-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    margin-bottom: var(--space-xl);
+    margin-bottom: var(--space-md);
+    /* Reduced from xl to pull bar up */
     gap: var(--space-md);
 }
 
@@ -136,7 +140,8 @@
 
 /* Phases Bar - Gradient style as per screenshot */
 .phases-container {
-    margin-top: auto;
+    margin-top: 0;
+    /* No extra margin top, rely on meta-grid margin only if needed */
 }
 
 .phases-bar {
