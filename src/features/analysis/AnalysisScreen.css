@@ -129,6 +129,8 @@
     font-size: 0.75rem;
     color: #737373;
     margin-bottom: 6px;
+    margin-right: 12px;
+    /* Added spacing to prevent overlap with value */
     text-transform: uppercase;
     letter-spacing: 0.05em;
     font-weight: 600;
