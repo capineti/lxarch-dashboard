@@ -1,7 +1,7 @@
 .vendor-screen-container {
     display: flex;
     flex-direction: column;
-    gap: var(--space-lg);
+    /* Removed gap to allow tighter spacing between header and cards */
     padding-bottom: var(--space-lg);
 }
 
@@ -11,9 +11,8 @@
     justify-content: space-between;
     align-items: center;
     padding: var(--space-md) 0 0 0;
-    /* Reduced top/bottom padding */
-    margin-bottom: var(--space-md);
-    /* Smaller margin to cards */
+    margin-bottom: var(--space-sm);
+    /* Tighter margin (approx 8-12px) */
 }
 
 .vendor-info-block h1 {
