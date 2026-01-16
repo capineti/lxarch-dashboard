@@ -333,16 +333,9 @@
 }
 
 /* Texture Pattern Top Right */
+/* Texture Pattern Removed */
 .analysis-kpi-card::after {
-    content: '';
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    width: 60px;
-    height: 30px;
-    background-image: radial-gradient(#e5e7eb 1.5px, transparent 1.5px);
-    background-size: 6px 6px;
-    opacity: 0.8;
+    display: none;
 }
 
 .analysis-kpi-card h4 {
@@ -360,7 +353,9 @@
     font-size: 3rem;
     font-weight: 800;
     /* Extra bold */
-    color: var(--lx-orange);
+    font-weight: 800;
+    /* Extra bold */
+    color: var(--text-main);
     margin-bottom: var(--space-md);
     line-height: 1;
     z-index: 1;
@@ -377,7 +372,9 @@
 .kpi-bar-fill {
     height: 100%;
     /* Gradient from Orange to faded orange as per design */
-    background: linear-gradient(90deg, #F0712C 0%, rgba(240, 113, 44, 0.4) 100%);
+    height: 100%;
+    /* Solid orange as per request */
+    background: var(--lx-orange);
     border-radius: 10px;
 }
 
