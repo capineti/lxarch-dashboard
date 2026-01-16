@@ -91,7 +91,7 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                             {/* Generated Ticks */}
                             {Array.from({ length: 60 }).map((_, i) => {
                                 const totalTicks = 60;
-                                const currentPercentage = 70; // Visual fill set to 70% per user request
+                                const currentPercentage = 73; // Adjusted to visually hit the 70 mark perfectly
                                 const tickPercentage = (i / (totalTicks - 1)) * 100;
 
                                 if (tickPercentage > currentPercentage) return null;
