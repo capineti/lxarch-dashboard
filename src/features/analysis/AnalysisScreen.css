@@ -546,8 +546,8 @@
     max-height: 500px;
     opacity: 1;
     overflow: hidden;
-    margin-top: var(--space-lg);
-    /* Same gap as between black cards */
+    margin-top: 0;
+    /* Removed extra margin to match horizontal gap (relying on header padding) */
     margin-bottom: var(--space-lg);
 }
 
