@@ -411,14 +411,16 @@
     font-size: 1.25rem;
     font-weight: 800;
     margin-bottom: 4px;
-    color: #111;
+    margin-bottom: 4px;
+    color: var(--text-main);
 }
 
 .result-label {
     font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: var(--space-lg);
-    color: #6B7280;
+    margin-bottom: var(--space-lg);
+    color: var(--text-muted);
 }
 
 .status-tag.green {
@@ -467,13 +469,15 @@
     font-size: 1.1rem;
     font-weight: 700;
     margin-bottom: var(--space-sm);
-    color: #111;
+    margin-bottom: var(--space-sm);
+    color: var(--text-main);
 }
 
 .issue-desc {
-    color: #4B5563;
+    color: var(--lx-orange);
     line-height: 1.6;
-    font-weight: 500;
+    font-weight: 600;
+    /* Bolder for readability */
 }
 
 .action-required-block h5 {
