@@ -21,7 +21,7 @@ const MOCK_ANALYSIS_DETAIL = {
     client: 'Cliente',
     role: 'Vendedor',
     date: '25/12/2025',
-    topic: 'Coaching IA | Revisión de Metodología LXArch',
+    topic: 'Coaching AI | Revisión de Metodología LXArch',
     summary: {
         interest: 88,
         status: 'En proceso',
