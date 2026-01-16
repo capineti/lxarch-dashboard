@@ -487,7 +487,7 @@
     padding: 0 20px 20px 20px;
     background-color: var(--bg-app);
     /* Always opaque */
-    transition: all 0.5s ease-out;
+    transition: all 0.25s ease-out;
 }
 
 /* Compact State: Add background */
@@ -504,7 +504,7 @@
 .header-spacer {
     height: 420px;
     /* Normal state: full header height */
-    transition: height 0.5s ease-out;
+    transition: height 0.25s ease-out;
 }
 
 .header-spacer.compact {
@@ -514,7 +514,7 @@
 
 /* Back Button - positioned inside sticky container */
 .back-btn {
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease;
     margin-bottom: 10px;
 }
 
@@ -522,14 +522,14 @@
 .collapsible-header-content,
 .collapsible-title,
 .collapsible-status-box {
-    transition: all 0.3s ease-out;
+    transition: all 0.25s ease-out;
     max-height: 200px;
     opacity: 1;
     overflow: hidden;
 }
 
 .collapsible-kpi-section {
-    transition: all 0.5s ease-out;
+    transition: all 0.25s ease-out;
     max-height: 500px;
     opacity: 1;
     overflow: hidden;
