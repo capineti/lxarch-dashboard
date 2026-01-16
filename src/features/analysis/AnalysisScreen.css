@@ -58,7 +58,8 @@
 }
 
 .analysis-subtitle {
-    font-size: 1rem;
+    font-size: 1.25rem;
+    /* Increased from 1rem */
     font-weight: 500;
     margin-bottom: 4px;
     color: #a3a3a3;
@@ -84,7 +85,8 @@
 
 /* Summary Block inside Right Card */
 .summary-block h4 {
-    font-size: 0.9rem;
+    font-size: 1.25rem;
+    /* Increased from 0.9rem */
     margin-bottom: var(--space-xs);
     color: #fff;
     font-weight: 600;
@@ -275,7 +277,8 @@
 
 .status-row {
     margin-bottom: 8px;
-    font-size: 0.95rem;
+    font-size: 1.15rem;
+    /* Increased from 0.95rem */
     font-weight: 700;
 }
 
@@ -288,12 +291,17 @@
 .orange-text {
     color: #c2410c;
     font-weight: 700;
-    margin-bottom: 2px;
+    margin-bottom: 4px;
+    font-size: 1rem;
+    /* Increased size */
 }
 
 .date-text {
-    font-weight: 600;
-    font-size: 0.95rem;
+    font-weight: 700;
+    /* Bolder */
+    font-size: 1.25rem;
+    /* Increased significantly */
+    color: #111;
 }
 
 
