@@ -138,15 +138,13 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                             <div style={{ fontSize: '4.5rem', lineHeight: '0.8', fontWeight: '300', color: 'var(--text-main)', letterSpacing: '-2px' }}>
                                 75<span style={{ fontSize: '2rem' }}>%</span>
                             </div>
-                            <div style={{ fontSize: '1.2rem', color: 'var(--text-muted)', fontWeight: '500', marginTop: '5px' }}>Media del equipo</div>
+                            <div style={{ fontSize: '0.9rem', color: 'var(--text-muted)', marginTop: '5px' }}>Media del equipo</div>
                             <div style={{
-                                fontSize: '2rem',
+                                fontSize: '2.5rem',
                                 color: 'var(--text-main)',
-                                fontWeight: '700',
-                                textTransform: 'uppercase',
-                                letterSpacing: '0.1em',
+                                fontWeight: '300',
                                 marginTop: '0px',
-                                lineHeight: '1'
+                                textTransform: 'capitalize'
                             }}>
                                 {new Date().toLocaleString('es-ES', { month: 'long' })}
                             </div>
