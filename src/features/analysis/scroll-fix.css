@@ -1,0 +1,58 @@
+/* --- SIMPLIFIED SCROLL INTERACTION --- */
+
+/* Sticky Container */
+.sticky-header-container {
+    position: sticky;
+    top: 80px;
+    z-index: 50;
+    margin: 0 -20px;
+    padding: 0 20px 20px 20px;
+    background: transparent;
+    transition: background-color 0.3s ease;
+}
+
+/* Compact State: Add background */
+.state-compact .sticky-header-container {
+    background-color: var(--bg-app);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] .state-compact .sticky-header-container {
+    background-color: var(--bg-app);
+}
+
+/* COMPACT MODE: Simply hide elements with display none */
+.state-compact .collapsible-header-content,
+.state-compact .collapsible-title,
+.state-compact .collapsible-status-box,
+.state-compact .collapsible-kpi-section {
+    display: none !important;
+}
+
+/* Back button fade */
+.state-compact .back-btn {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* Slightly reduce card padding in compact mode */
+.state-compact .header-left-card,
+.state-compact .header-right-card {
+    padding: 1rem 1.5rem;
+}
+
+/* Reduce meta grid spacing */
+.state-compact .meta-grid {
+    margin-bottom: 0.5rem;
+}
+
+/* Make phases bar thinner */
+.state-compact .phases-bar {
+    height: 8px;
+}
+
+/* Ensure diagnosis section stays below */
+.diagnosis-section {
+    position: relative;
+    z-index: 10;
+}

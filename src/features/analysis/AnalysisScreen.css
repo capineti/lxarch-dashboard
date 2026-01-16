@@ -476,171 +476,61 @@
     text-transform: uppercase;
 }
 
-/* --- NEW SCROLL INTERACTION SYSTEM --- */
+/* --- SIMPLIFIED SCROLL INTERACTION --- */
 
 /* Sticky Container */
 .sticky-header-container {
     position: sticky;
     top: 80px;
-    /* Adjust based on navbar height */
     z-index: 50;
     margin: 0 -20px;
-    padding: 0 20px 0 20px;
-    /* Remove bottom padding initially to reduce gap */
+    padding: 0 20px 20px 20px;
     background: transparent;
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: background-color 0.3s ease;
 }
 
-/* COMPACT STATE: Opaque background & layout shifts */
+/* Compact State: Add background */
 .state-compact .sticky-header-container {
     background-color: var(--bg-app);
-    padding-bottom: 20px;
-    /* Add padding when sticky to frame it */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
 [data-theme="dark"] .state-compact .sticky-header-container {
     background-color: var(--bg-app);
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
 }
 
-/* Collapsible Elements: height & opacity transition */
-.collapsible-header-content,
-.collapsible-title,
-.collapsible-status-box,
-.collapsible-kpi-section {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    max-height: 500px;
-    opacity: 1;
-    overflow: hidden;
-    transform-origin: top;
-}
-
-/* KPI Section specific spacing */
-.collapsible-kpi-section {
-    margin-bottom: var(--space-lg);
-}
-
-/* Back Button Transition */
-.back-btn {
-    transition: all 0.3s ease;
-    max-height: 50px;
-    margin-bottom: -10px;
-}
-
-/* --- STATE: COMPACT ACTIVATED --- */
-
-/* Hide collapsible elements completely */
+/* COMPACT MODE: Simply hide elements with display none */
 .state-compact .collapsible-header-content,
 .state-compact .collapsible-title,
 .state-compact .collapsible-status-box,
 .state-compact .collapsible-kpi-section {
-    max-height: 0;
+    display: none !important;
+}
+
+/* Back button fade */
+.state-compact .back-btn {
     opacity: 0;
-    margin: 0 !important;
-    padding: 0 !important;
     pointer-events: none;
 }
 
-/* Hide Back Button */
-.state-compact .back-btn {
-    opacity: 0;
-    max-height: 0;
-    margin: 0;
-}
-
-/* Card Transformations */
-.header-left-card,
-.header-right-card {
-    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
+/* Slightly reduce card padding in compact mode */
 .state-compact .header-left-card,
 .state-compact .header-right-card {
-    padding: 1.25rem 1.5rem;
-    /* Compact padding */
-    gap: 0;
-    min-height: 100px;
-    /* Ensure consistent height */
-    justify-content: center;
-    /* Center content vertically */
+    padding: 1rem 1.5rem;
 }
 
-/* Right Card: Layout Shift */
-/* We keep it flex-col but change how children behave */
-.header-right-card {
-    display: flex;
-    flex-direction: column;
-}
-
-.state-compact .header-right-card {
-    /* Switch to row-like alignment via direct Flex properties on wrapper */
-    justify-content: center;
-}
-
-/* Wrapper for Score */
-.summary-score-wrapper {
-    transition: all 0.5s ease;
-    width: 100%;
-}
-
-.state-compact .summary-score-wrapper {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    gap: 1.5rem;
-    padding-top: 0;
-}
-
-/* Score Text Resizing */
-.big-score {
-    transition: font-size 0.5s ease;
-}
-
-.state-compact .big-score {
-    font-size: 3rem;
-    line-height: 1;
-}
-
-.state-compact .big-score .small {
-    font-size: 1rem;
-    align-self: center;
-}
-
-/* Bar Resizing */
-.score-bar-bg {
-    transition: width 0.5s ease;
-}
-
-.state-compact .score-bar-bg {
-    width: 100px;
-    height: 8px;
-    margin-top: 0;
-}
-
-/* Left Card: Meta Grid Adjustment */
-.meta-grid {
-    transition: margin 0.5s ease;
-}
-
+/* Reduce meta grid spacing */
 .state-compact .meta-grid {
     margin-bottom: 0.5rem;
 }
 
-/* Diagnosis Section: Ensure it flows correctly */
+/* Make phases bar thinner */
+.state-compact .phases-bar {
+    height: 8px;
+}
+
+/* Ensure diagnosis section stays below */
 .diagnosis-section {
     position: relative;
     z-index: 10;
-    transition: transform 0.5s ease;
-}
-
-/* Phases Bar compaction */
-.phases-bar {
-    transition: height 0.3s ease;
-}
-
-.state-compact .phases-bar {
-    height: 6px;
-    margin-bottom: 0;
 }
