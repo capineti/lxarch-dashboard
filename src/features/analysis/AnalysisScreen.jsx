@@ -147,9 +147,6 @@ export const AnalysisScreen = ({ agent, onBack }) => {
                 </div>
             </div>
 
-            {/* Dynamic Spacer - compensates for sticky header height */}
-            <div className={`header-spacer ${isCompact ? 'compact' : ''}`}></div>
-
             {/* Collapsible KPI Section */}
             <div className="collapsible-kpi-section">
                 <section className="kpi-cards-row">

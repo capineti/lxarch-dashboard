@@ -382,8 +382,13 @@
 }
 
 
-/* Diagnosis Section */
+/* Diagnosis section positioning */
 .diagnosis-section {
+    position: relative;
+    z-index: 10;
+    transition: margin-top 0.25s ease-out;
+    margin-top: var(--space-lg);
+    /* Normal spacing */
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: var(--space-xl);
@@ -391,6 +396,12 @@
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
+}
+
+/* When compact, add top margin to position diagnosis below sticky header */
+.state-compact .diagnosis-section {
+    margin-top: 220px;
+    /* Position below sticky header when KPIs are hidden */
 }
 
 .diagnosis-left {
@@ -500,18 +511,6 @@
     background-color: var(--bg-app);
 }
 
-/* Dynamic Spacer - prevents content from going under sticky header */
-.header-spacer {
-    height: 200px;
-    /* Balanced - prevents overlap but keeps content close */
-    transition: height 0.25s ease-out;
-}
-
-.header-spacer.compact {
-    height: 100px;
-    /* Compact state */
-}
-
 /* Back Button - positioned inside sticky container */
 .back-btn {
     transition: opacity 0.25s ease;
@@ -546,8 +545,8 @@
     max-height: 500px;
     opacity: 1;
     overflow: hidden;
-    margin-top: 20px;
-    /* Space below sticky header */
+    margin-top: var(--space-lg);
+    /* Same gap as between black cards */
     margin-bottom: var(--space-lg);
 }
 
