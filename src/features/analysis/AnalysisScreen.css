@@ -386,7 +386,8 @@
     position: relative;
     z-index: 10;
     transition: margin-top 0.25s ease-out;
-    margin-top: 1.5rem;
+    margin-top: 3rem;
+    /* Increased to prevent overlap */
     /* Reduced margin */
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -508,8 +509,8 @@
     top: 80px;
     z-index: 50;
     margin: 0 -20px;
-    padding: 0 20px 4px 20px;
-    /* Reduced bottom padding to prevent covering content */
+    padding: 0 20px 20px 20px;
+    /* Restored padding */
     background-color: var(--bg-app);
     /* Always opaque */
     transition: all 0.25s ease-out;
