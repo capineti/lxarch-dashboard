@@ -316,7 +316,7 @@
 }
 
 .analysis-kpi-card {
-    background: #FFFFFF;
+    background: var(--bg-card);
     padding: var(--space-lg);
     border-radius: var(--radius-md);
     /* 16px roughly */
@@ -392,7 +392,8 @@
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: var(--space-xl);
-    background: #FFFFFF;
+    background: var(--bg-card);
+    color: var(--text-main);
     padding: var(--space-xl);
     border-radius: var(--radius-lg);
     box-shadow: var(--shadow-card);
