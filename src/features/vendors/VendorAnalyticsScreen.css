@@ -47,10 +47,16 @@
     margin-bottom: var(--space-lg);
 }
 
+/* Black Summary Cards Layout */
+.vendor-summary-cards {
+    display: flex;
+    gap: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+/* Base Card Style */
 .v-summary-card {
-    flex: 1;
     background: #1a1a1a;
-    /* Revert to Black/Dark per user request */
     border-radius: var(--radius-lg);
     padding: var(--space-lg);
     color: #ffffff;
@@ -60,6 +66,80 @@
     justify-content: space-between;
     min-height: 160px;
 }
+
+/* Score Card (Left) */
+.score-card-expanded {
+    flex: 2;
+    /* Takes separate width */
+}
+
+.score-row {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.score-progress-bar {
+    flex: 1;
+    height: 8px;
+    /* Thinner elegant bar */
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    max-width: 300px;
+    /* Limit width */
+}
+
+.score-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #F97316 0%, #FB923C 100%);
+    /* Orange gradient */
+    border-radius: 4px;
+}
+
+/* Status Cards Group (Right) */
+.status-cards-group {
+    flex: 3;
+    display: flex;
+    gap: var(--space-lg);
+}
+
+.square-card {
+    flex: 1;
+    /* Equal width */
+    align-items: center;
+    /* Center content */
+    text-align: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+}
+
+.square-card .v-card-title {
+    margin-bottom: 0;
+    font-size: 0.9rem;
+}
+
+.square-card .v-card-value {
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+/* Text Colors for Statuses */
+.text-active {
+    color: #ffffff;
+}
+
+.text-closed {
+    color: #4ade80;
+}
+
+/* Green */
+.text-lost {
+    color: #f87171;
+}
+
+/* Red */
 
 .v-card-title {
     font-size: 1rem;
