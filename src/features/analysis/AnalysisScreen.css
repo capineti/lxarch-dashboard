@@ -480,8 +480,8 @@
     color: var(--text-main);
     line-height: 1.6;
     font-weight: 500;
-    margin-bottom: 1.4rem;
-    /* Micro-adjust to perfectly align 1. with 1.1 */
+    margin-bottom: 0.75rem;
+    /* Decreased to raise Action Required list */
 }
 
 .action-required-block h5 {
