@@ -386,7 +386,7 @@
     position: relative;
     z-index: 10;
     transition: margin-top 0.25s ease-out;
-    margin-top: 1rem;
+    margin-top: 1.5rem;
     /* Reduced margin */
     display: grid;
     grid-template-columns: 1fr 2fr;
@@ -508,7 +508,8 @@
     top: 80px;
     z-index: 50;
     margin: 0 -20px;
-    padding: 0 20px 20px 20px;
+    padding: 0 20px 4px 20px;
+    /* Reduced bottom padding to prevent covering content */
     background-color: var(--bg-app);
     /* Always opaque */
     transition: all 0.25s ease-out;
