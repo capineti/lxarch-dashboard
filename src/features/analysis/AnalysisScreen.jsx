@@ -1,11 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
-
 import './AnalysisScreen.css';
 import { fetchAnalysis } from '../../services/dataService';
 
 export const AnalysisScreen = ({ agent, onBack }) => {
     const [analysisData, setAnalysisData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [isCompact, setIsCompact] = useState(false);
+    const containerRef = useRef(null);
 
     // Use passed agent or fallback to local variable for display before data loads
     const currentAgent = agent || { name: 'Sofía Martínez' };
@@ -25,94 +26,138 @@ export const AnalysisScreen = ({ agent, onBack }) => {
         loadData();
     }, [currentAgent]);
 
+    // Robust scroll listener
+    useEffect(() => {
+        if (loading) return;
+
+        const timer = setTimeout(() => {
+            const element = containerRef.current;
+            let scroller = element?.closest('.layout-main');
+
+            if (!scroller) scroller = document.querySelector('.layout-main');
+            if (!scroller) scroller = window;
+
+            const handleScroll = () => {
+                const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
+                // Threshold matches user's feel
+                setIsCompact(scrollTop > 100);
+            };
+
+            scroller.addEventListener('scroll', handleScroll);
+            handleScroll();
+
+            return () => {
+                if (scroller) scroller.removeEventListener('scroll', handleScroll);
+            };
+        }, 100);
+
+        return () => clearTimeout(timer);
+    }, [loading]);
+
     if (loading || !analysisData) {
         return <div className="p-10 text-center">Cargando análisis...</div>;
     }
 
     return (
-        <div className="analysis-container">
-            {/* Back Button */}
-            <button className="back-btn" onClick={onBack}>
-                ← Volver
-            </button>
+        <div ref={containerRef} className={`analysis-container ${isCompact ? 'state-compact' : ''}`}>
 
-            {/* Header Split Section */}
-            <section className="analysis-header-split">
-                {/* Left Card: Main Info & Phase Bar */}
-                <div className="header-left-card">
-                    <h2 className="analysis-subtitle">Análisis de venta de {currentAgent.name}</h2>
-                    <h1 className="analysis-title">{analysisData.topic}</h1>
+            {/* Sticky Header Container */}
+            <div className="sticky-header-container">
+                <div className="max-w-7xl mx-auto">
+                    {/* Back Button (Absolute to not affect flow of sticky header if possible or handled via padding) */}
+                    <button className="back-btn" onClick={onBack}>
+                        ← Volver
+                    </button>
 
-                    <div className="meta-grid">
-                        <div className="meta-item">
-                            <span className="label">Cliente</span>
-                            <span className="val">{analysisData.client}</span>
-                        </div>
-                        <div className="meta-item">
-                            <span className="label">Vendedor</span>
-                            <span className="val">{currentAgent.name}</span>
-                        </div>
-                        <div className="meta-item">
-                            <span className="label">Fecha la llamada</span>
-                            <span className="val">{analysisData.date}</span>
-                        </div>
-                    </div>
+                    <section className="analysis-header-split">
+                        {/* Left Card */}
+                        <div className="header-left-card">
+                            {/* Collapsible Title */}
+                            <div className="collapsible-header-content">
+                                <h2 className="analysis-subtitle">Análisis de venta de {currentAgent.name}</h2>
+                                <h1 className="analysis-title">{analysisData.topic}</h1>
+                            </div>
 
-                    {/* Progress Bar (Phases) */}
-                    <div className="phases-container">
-                        <div className="phases-bar">
-                            <div className="phase-seg blue" style={{ width: '15%' }}></div>
-                            <div className="phase-seg orange" style={{ width: '45%' }}></div>
-                            <div className="phase-seg red" style={{ width: '30%' }}></div>
-                            <div className="phase-seg grey" style={{ width: '10%' }}></div>
+                            <div className="meta-grid">
+                                <div className="meta-item">
+                                    <span className="label">Cliente</span>
+                                    <span className="val">{analysisData.client}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <span className="label">Vendedor</span>
+                                    <span className="val">{currentAgent.name}</span>
+                                </div>
+                                <div className="meta-item">
+                                    <span className="label">Fecha</span>
+                                    <span className="val">{analysisData.date}</span>
+                                </div>
+                            </div>
+
+                            {/* Progress Bar */}
+                            <div className="phases-container">
+                                <div className="phases-bar">
+                                    <div className="phase-seg blue" style={{ width: '15%' }}></div>
+                                    <div className="phase-seg orange" style={{ width: '45%' }}></div>
+                                    <div className="phase-seg red" style={{ width: '30%' }}></div>
+                                    <div className="phase-seg grey" style={{ width: '10%' }}></div>
+                                </div>
+                                <div className="phases-legend">
+                                    <span className="legend-item blue">Conexión (15%)</span>
+                                    <span className="legend-item orange">Análisis (45%)</span>
+                                    <span className="legend-item red">Oferta (30%)</span>
+                                    <span className="legend-item grey">Cierre (10%)</span>
+                                </div>
+                            </div>
                         </div>
-                        <div className="phases-legend">
-                            <span className="legend-item blue">Conexión (15%)</span>
-                            <span className="legend-item orange">Análisis (45%)</span>
-                            <span className="legend-item red">Oferta (30%)</span>
-                            <span className="legend-item grey">Cierre (10%)</span>
+
+                        {/* Right Card */}
+                        <div className="header-right-card">
+                            <div className="collapsible-title">
+                                <h4>Summary</h4>
+                            </div>
+
+                            <div className="summary-score-wrapper">
+                                <div className="big-score">
+                                    {analysisData.summary.interest}
+                                    <span className="small">% interés</span>
+                                </div>
+                                <div className="score-bar-bg">
+                                    <div className="score-bar-fill" style={{ width: `${analysisData.summary.interest}%` }}></div>
+                                </div>
+                            </div>
+
+                            <div className="collapsible-status-box">
+                                <div className="summary-status-box">
+                                    <div className="status-row">
+                                        <span>Estado Actual:</span> <span className="status-val">{analysisData.summary.status}</span>
+                                    </div>
+                                    <div className="next-step-row">
+                                        <span className="orange-text">{analysisData.summary.nextStep}</span>
+                                        <span className="date-text">{analysisData.summary.nextDate}</span>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                    </div>
+                    </section>
                 </div>
+            </div>
 
-                {/* Right Card: Summary & Status */}
-                <div className="header-right-card">
-                    <div className="summary-block">
-                        <h4>Summary</h4>
-                        <div className="big-score">
-                            {analysisData.summary.interest} <span className="small">% interés</span>
+            {/* Collapsible KPI Section */}
+            <div className="collapsible-kpi-section">
+                <section className="kpi-cards-row">
+                    {analysisData.kpis.map((kpi, idx) => (
+                        <div className="analysis-kpi-card" key={idx}>
+                            <h4>{kpi.label}</h4>
+                            <div className="kpi-val">{kpi.value}</div>
+                            <div className="kpi-bar-bg">
+                                <div className="kpi-bar-fill" style={{ width: `${kpi.barValue}%` }}></div>
+                            </div>
                         </div>
-                        <div className="score-bar-bg">
-                            <div className="score-bar-fill" style={{ width: `${analysisData.summary.interest}%` }}></div>
-                        </div>
-                    </div>
+                    ))}
+                </section>
+            </div>
 
-                    <div className="summary-status-box">
-                        <div className="status-row">
-                            <span>Estado Actual:</span> <span className="status-val">{analysisData.summary.status}</span>
-                        </div>
-                        <div className="next-step-row">
-                            <span className="orange-text">{analysisData.summary.nextStep}</span>
-                            <span className="date-text">{analysisData.summary.nextDate}</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            {/* KPI Cards Row */}
-            <section className="kpi-cards-row">
-                {analysisData.kpis.map((kpi, idx) => (
-                    <div className="analysis-kpi-card" key={idx}>
-                        <h4>{kpi.label}</h4>
-                        <div className="kpi-val">{kpi.value}</div>
-                        <div className="kpi-bar-bg">
-                            <div className="kpi-bar-fill" style={{ width: `${kpi.barValue}%` }}></div>
-                        </div>
-                    </div>
-                ))}
-            </section>
-
-            {/* Diagnosis & Action Section */}
+            {/* Diagnosis Section - Always Visible */}
             <section className="diagnosis-section">
                 <div className="diagnosis-left">
                     <h3>Diagnostico del agente de ventas</h3>
@@ -145,6 +190,9 @@ export const AnalysisScreen = ({ agent, onBack }) => {
                     </div>
                 </div>
             </section>
+
+            {/* Spacer for scrolling */}
+            <div style={{ height: '20vh' }}></div>
         </div>
     );
 };
