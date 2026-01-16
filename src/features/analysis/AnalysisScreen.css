@@ -500,6 +500,18 @@
     background-color: var(--bg-app);
 }
 
+/* Dynamic Spacer - prevents content from going under sticky header */
+.header-spacer {
+    height: 280px;
+    /* Reduced to bring diagnosis closer */
+    transition: height 0.25s ease-out;
+}
+
+.header-spacer.compact {
+    height: 120px;
+    /* Compact state */
+}
+
 /* Back Button - positioned inside sticky container */
 .back-btn {
     transition: opacity 0.25s ease;
