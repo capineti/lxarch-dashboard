@@ -477,15 +477,14 @@
 }
 
 .issue-desc {
-    color: var(--lx-orange);
+    color: var(--text-main);
     line-height: 1.6;
-    font-weight: 600;
-    /* Bolder for readability */
+    font-weight: 500;
 }
 
 .action-required-block h5 {
     font-size: 0.75rem;
-    color: #9CA3AF;
+    color: var(--lx-orange);
     font-weight: 800;
     margin-bottom: var(--space-md);
     letter-spacing: 0.05em;
