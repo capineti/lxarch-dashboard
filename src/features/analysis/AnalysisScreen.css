@@ -400,10 +400,7 @@
 }
 
 /* When compact, add top margin to position diagnosis below sticky header */
-.state-compact .diagnosis-section {
-    margin-top: 220px;
-    /* Position below sticky header when KPIs are hidden */
-}
+/* .state-compact .diagnosis-section margin removed to prevent jump */
 
 .diagnosis-left {
     border-right: 2px solid var(--border);
@@ -577,12 +574,15 @@
 
 
 
+/* KPI section collapsing disabled to maintain layout stability
 .state-compact .collapsible-kpi-section {
     max-height: 0;
     opacity: 0;
     margin-bottom: 0;
+    padding-top: 0;
+    padding-bottom: 0;
 }
-
+*/
 /* Back button fade */
 .state-compact .back-btn {
     opacity: 0;
