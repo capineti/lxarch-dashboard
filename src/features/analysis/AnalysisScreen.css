@@ -384,10 +384,10 @@
 /* Diagnosis section positioning */
 .diagnosis-section {
     position: relative;
-    z-index: 10;
+    z-index: 60;
+    /* Higher than sticky header (50) to scroll OVER it */
     transition: margin-top 0.25s ease-out;
-    margin-top: 6rem;
-    /* Aumentado agresivamente para forzar separación */
+    margin-top: 2rem;
     /* Reduced margin */
     display: grid;
     grid-template-columns: 1fr 2fr;
