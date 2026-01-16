@@ -10,7 +10,10 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: var(--space-lg) 0;
+    padding: var(--space-md) 0 0 0;
+    /* Reduced top/bottom padding */
+    margin-bottom: var(--space-md);
+    /* Smaller margin to cards */
 }
 
 .vendor-info-block h1 {
