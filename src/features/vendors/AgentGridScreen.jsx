@@ -128,9 +128,9 @@ export const AgentGridScreen = ({ onAgentSelect }) => {
                             {/* Labels - positioned accurately on the arc (Radius ~190) */}
                             <g className="gauge-labels" style={{ fontSize: '12px', fill: 'var(--text-muted)', fontWeight: '500' }}>
                                 <text x="15" y="200" textAnchor="end">0%</text>
-                                <text x="172" y="25" textAnchor="middle">45%</text>
+                                <text x="160" y="45" textAnchor="middle">45%</text>
                                 <text x="200" y="15" textAnchor="middle">50%</text>
-                                <text x="306" y="55" textAnchor="middle">70%</text>
+                                <text x="325" y="65" textAnchor="middle">70%</text>
                                 <text x="385" y="200" textAnchor="start">100%</text>
                             </g>
                         </svg>
