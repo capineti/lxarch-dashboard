@@ -493,7 +493,7 @@
 /* Compact State: Add background */
 .state-compact .sticky-header-container {
     background-color: var(--bg-app);
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    /* No shadow - user requested removal */
 }
 
 [data-theme="dark"] .state-compact .sticky-header-container {
@@ -502,13 +502,13 @@
 
 /* Dynamic Spacer - prevents content from going under sticky header */
 .header-spacer {
-    height: 420px;
-    /* Normal state: full header height */
+    height: 350px;
+    /* Normal state: reduced to bring diagnosis section up */
     transition: height 0.25s ease-out;
 }
 
 .header-spacer.compact {
-    height: 180px;
+    height: 150px;
     /* Compact state: reduced header height */
 }
 
@@ -519,8 +519,21 @@
 }
 
 /* Collapsible elements - use max-height like reference code */
-.collapsible-header-content,
-.collapsible-title,
+.collapsible-header-content {
+    transition: all 0.25s ease-out;
+    max-height: 200px;
+    opacity: 1;
+    overflow: hidden;
+}
+
+.collapsible-title {
+    transition: all 0.15s ease-out;
+    /* Faster to prevent jump */
+    max-height: 100px;
+    opacity: 1;
+    overflow: hidden;
+}
+
 .collapsible-status-box {
     transition: all 0.25s ease-out;
     max-height: 200px;
