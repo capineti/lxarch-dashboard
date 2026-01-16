@@ -405,7 +405,7 @@
 }
 
 .diagnosis-left {
-    border-right: 1px solid #F3F4F6;
+    border-right: 2px solid var(--border);
     padding-right: var(--space-lg);
 }
 
