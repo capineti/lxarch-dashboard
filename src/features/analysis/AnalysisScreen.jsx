@@ -39,11 +39,16 @@ export const AnalysisScreen = ({ agent, onBack }) => {
 
             const handleScroll = () => {
                 const scrollTop = scroller === window ? window.scrollY : scroller.scrollTop;
-                // Threshold matches user's feel
-                setIsCompact(scrollTop > 100);
+
+                // Hysteresis: different thresholds to prevent flickering
+                if (scrollTop > 150 && !isCompact) {
+                    setIsCompact(true);
+                } else if (scrollTop < 100 && isCompact) {
+                    setIsCompact(false);
+                }
             };
 
-            scroller.addEventListener('scroll', handleScroll);
+            scroller.addEventListener('scroll', handleScroll, { passive: true });
             handleScroll();
 
             return () => {
@@ -52,7 +57,7 @@ export const AnalysisScreen = ({ agent, onBack }) => {
         }, 100);
 
         return () => clearTimeout(timer);
-    }, [loading]);
+    }, [loading, isCompact]); // Include isCompact to enable hysteresis
 
     if (loading || !analysisData) {
         return <div className="p-10 text-center">Cargando análisis...</div>;
