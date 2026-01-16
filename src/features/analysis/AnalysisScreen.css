@@ -355,7 +355,7 @@
     /* Extra bold */
     font-weight: 800;
     /* Extra bold */
-    color: var(--text-main);
+    color: var(--lx-orange);
     margin-bottom: var(--space-md);
     line-height: 1;
     z-index: 1;
@@ -590,4 +590,8 @@
 .diagnosis-section {
     position: relative;
     z-index: 10;
+}
+
+[data-theme="dark"] .kpi-val {
+    color: var(--text-main);
 }
