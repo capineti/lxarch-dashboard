@@ -55,6 +55,55 @@ const MOCK_ANALYSIS_DETAIL = {
                 '3. Objetivo: Elevar el puntaje de Detección de Dudas Internas por encima del 70%.'
             ]
         }
+    },
+    qualitativeAnalysis: {
+        title: "EVALUACIÓN DETALLADA",
+        sections: [
+            { title: "1. Estructura de la Reunión (20%)", score: "15/20", content: "Lucía siguió la mayoría de las etapas del guión, comenzando con una buena conexión y encuadre. Sin embargo, la transición a la oferta y el cierre no fueron tan claros, lo que podría haber llevado a una decisión más rápida por parte de Jaime." },
+            { title: "2. Filosofía de Venta (20%)", score: "16/20", content: "Lucía mostró empatía y escuchó activamente a Jaime, validando sus preocupaciones. Sin embargo, en algunos momentos, la conversación se desvió hacia anécdotas personales, lo que podría haber restado foco a la propuesta de valor." },
+            { title: "3. Técnicas de Descubrimiento (20%)", score: "17/20", content: "Lucía hizo preguntas efectivas para descubrir los dolores y necesidades de Jaime. Sin embargo, podría haber profundizado más en la urgencia de su situación para motivar una decisión más rápida." },
+            { title: "4. Manejo de Objeciones (15%)", score: "12/15", content: "Lucía manejó bien las objeciones relacionadas con el precio y la necesidad de tiempo, pero no abordó de manera proactiva la objeción sobre la falta de clientes, lo que podría haber reforzado su propuesta." },
+            { title: "5. Presentación del Programa (15%)", score: "14/15", content: "La presentación del programa fue clara y adaptada a las necesidades de Jaime. Lucía explicó bien los beneficios y la estructura del programa, aunque podría haber enfatizado más el diferencial de PRO1." },
+            { title: "6. Cierre y Próximos Pasos (10%)", score: "6/10", content: "Lucía intentó cerrar la venta, pero no fue lo suficientemente firme en la urgencia de la decisión. Aunque ofreció opciones de pago, no logró concretar el cierre en la llamada." }
+        ],
+        strengths: [
+            { title: "Conexión inicial efectiva", content: "Lucía estableció una buena relación desde el principio, lo que generó confianza." },
+            { title: "Escucha activa", content: "Mostró interés genuino en las preocupaciones de Jaime, lo que ayudó a identificar sus necesidades." },
+            { title: "Presentación clara del programa", content: "Explicó bien la estructura y los beneficios del programa, alineándolos con las necesidades de Jaime." }
+        ],
+        improvements: [
+            {
+                id: 1,
+                title: "Cierre más firme",
+                content: {
+                    missing: "Lucía no fue lo suficientemente directa en el cierre, lo que permitió que Jaime se sintiera cómodo posponiendo la decisión. No se enfatizó la urgencia de la oferta.",
+                    todo: "Al final de la reunión, Lucía debe preguntar directamente: \"¿Estás listo para asegurar tu plaza y comenzar a trabajar en tu estrategia?\" y resaltar que el precio y los beneficios son limitados en el tiempo.",
+                    why: "Un cierre más firme puede aumentar la tasa de conversión y reducir la posibilidad de que el cliente se lo piense demasiado.",
+                    exercise: "Practicar el cierre en simulaciones de ventas, enfocándose en preguntas directas y urgentes."
+                }
+            },
+            {
+                id: 2,
+                title: "Profundizar en la urgencia",
+                content: {
+                    missing: "Lucía no exploró suficientemente la urgencia de Jaime para resolver su situación actual, lo que podría haber motivado una decisión más rápida.",
+                    todo: "Preguntar: \"¿Qué pasaría si no tomas acción ahora? ¿Cómo afectaría eso a tu negocio en los próximos meses?\"",
+                    why: "Entender la urgencia puede motivar al cliente a actuar rápidamente, aumentando las posibilidades de cierre.",
+                    exercise: "Crear una lista de preguntas que profundicen en la urgencia y practicar su uso en reuniones simuladas."
+                }
+            },
+            {
+                id: 3,
+                title: "Enfocar la conversación en el valor del programa",
+                content: {
+                    missing: "Aunque Lucía presentó el programa, no enfatizó suficientemente el valor único que ofrece PRO1 en comparación con otras opciones.",
+                    todo: "Incluir una sección en la presentación donde se comparen los resultados de PRO1 con otras formaciones, destacando casos de éxito específicos.",
+                    why: "Resaltar el valor diferencial puede ayudar a justificar la inversión y aumentar la confianza del cliente en la decisión.",
+                    exercise: "Preparar una presentación que incluya comparaciones de resultados y testimonios de clientes exitosos."
+                }
+            }
+        ],
+        conclusion: "Lucía mostró un buen desempeño en la reunión, estableciendo una conexión sólida y presentando el programa de manera efectiva. Sin embargo, debe mejorar en el cierre y en la profundización de la urgencia para maximizar las oportunidades."
     }
 };
 

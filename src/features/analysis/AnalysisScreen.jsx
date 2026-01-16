@@ -196,6 +196,56 @@ export const AnalysisScreen = ({ agent, onBack }) => {
                 </div>
             </section>
 
+            {/* Qualitative Analysis Section (New Card) */}
+            {analysisData.qualitativeAnalysis && (
+                <section className="diagnosis-section qualitative-card">
+                    <div className="qualitative-content">
+                        <h3>{analysisData.qualitativeAnalysis.title}</h3>
+
+                        <div className="evaluation-list">
+                            {analysisData.qualitativeAnalysis.sections.map((sec, i) => (
+                                <div key={i} className="eval-item">
+                                    <h4 className="eval-title">{sec.title}</h4>
+                                    <div className="eval-score">***Puntuación: {sec.score}</div>
+                                    <p className="eval-text">{sec.content}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <hr className="section-divider" />
+
+                        <h4 className="section-header">✅ FORTALEZAS PRINCIPALES</h4>
+                        <ul className="strengths-list">
+                            {analysisData.qualitativeAnalysis.strengths.map((str, i) => (
+                                <li key={i}>
+                                    <strong>{str.title}:</strong> {str.content}
+                                </li>
+                            ))}
+                        </ul>
+
+                        <hr className="section-divider" />
+
+                        <h4 className="section-header">🚀 ÁREAS DE MEJORA (PRIORITARIAS)</h4>
+                        <div className="improvements-list">
+                            {analysisData.qualitativeAnalysis.improvements.map((imp) => (
+                                <div key={imp.id} className="imp-item">
+                                    <h5 className="imp-title">{imp.id}. {imp.title}</h5>
+                                    <p><strong>❌ Lo que faltó:</strong> {imp.content.missing}</p>
+                                    <p><strong>✅ Qué hacer:</strong> {imp.content.todo}</p>
+                                    <p><strong>💡 Por qué importa:</strong> {imp.content.why}</p>
+                                    <p><strong>🎯 Ejercicio práctico:</strong> {imp.content.exercise}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <hr className="section-divider" />
+
+                        <h4 className="section-header">💡 CONCLUSIÓN</h4>
+                        <p className="conclusion-text">{analysisData.qualitativeAnalysis.conclusion}</p>
+                    </div>
+                </section>
+            )}
+
             {/* Spacer for scrolling */}
             <div style={{ height: '20vh' }}></div>
         </div>

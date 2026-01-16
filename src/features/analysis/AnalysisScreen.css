@@ -386,8 +386,8 @@
     position: relative;
     z-index: 10;
     transition: margin-top 0.25s ease-out;
-    margin-top: var(--space-lg);
-    /* Normal spacing */
+    margin-top: 1rem;
+    /* Reduced margin */
     display: grid;
     grid-template-columns: 1fr 2fr;
     gap: var(--space-xl);
@@ -611,4 +611,108 @@
 
 [data-theme="dark"] .kpi-val {
     color: var(--text-main);
+}
+
+/* Qualitative Analysis Card */
+.qualitative-card {
+    display: block !important;
+    margin-top: 1.5rem !important;
+    /* Spacing between cards */
+}
+
+.qualitative-content {
+    max-width: 100%;
+}
+
+.qualitative-content h3 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 2rem;
+    color: var(--text-main);
+}
+
+.eval-item {
+    margin-bottom: 2rem;
+}
+
+.eval-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-main);
+}
+
+.eval-score {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.eval-text {
+    line-height: 1.7;
+    color: var(--text-main);
+    font-size: 1rem;
+}
+
+.section-divider {
+    border: 0;
+    height: 1px;
+    background: var(--border);
+    margin: 2.5rem 0;
+}
+
+.section-header {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    margin-bottom: 1.25rem;
+    text-transform: uppercase;
+}
+
+.strengths-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.strengths-list li {
+    font-size: 1rem;
+    color: var(--text-main);
+    line-height: 1.7;
+}
+
+.imp-item {
+    margin-bottom: 2rem;
+    background: rgba(var(--bg-app-rgb), 0.5);
+    /* Fallback or transparent */
+    padding-bottom: 1rem;
+    border-bottom: 1px dashed var(--border);
+}
+
+.imp-item:last-child {
+    border-bottom: none;
+}
+
+.imp-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.imp-item p {
+    margin-bottom: 0.75rem;
+    line-height: 1.6;
+    color: var(--text-main);
+}
+
+.conclusion-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-main);
+    font-weight: 500;
 }
