@@ -541,7 +541,8 @@
 }
 
 .collapsible-kpi-section {
-    transition: all 0.25s ease-out;
+    transition: all 0.1s ease-out;
+    /* Fast transition for instant feel */
     max-height: 500px;
     opacity: 1;
     overflow: hidden;
