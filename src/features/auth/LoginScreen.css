@@ -1,0 +1,183 @@
+/* FONTS - Assuming "Suisse Intl" is available, falling back to clean sans-serif */
+@font-face {
+    font-family: 'Suisse Intl';
+    src: local('Suisse Intl'), local('SuisseIntl'), url('../../assets/fonts/SuisseIntl-Book.woff2') format('woff2');
+    /* Example path */
+    font-weight: 400;
+    font-style: normal;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background-color: #E7E6E2;
+    /* LxArch Beige */
+    position: relative;
+    overflow: hidden;
+    font-family: 'Suisse Intl', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+/* Background Graphic from LxArch Hero (Static fallback) */
+.login-bg-graphic {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://cdn.prod.website-files.com/646f20f4fae8845a741735a7%2F68a2a665bedc5aa90e4cbbdc_home%20loop%2031-poster-00001.jpg');
+    background-size: cover;
+    background-position: center;
+    opacity: 0.4;
+    /* Visible but subtle behind card */
+    z-index: 0;
+}
+
+.login-card {
+    position: relative;
+    z-index: 1;
+    background: #E7E6E2;
+    /* Match page bg for seamless minimal look */
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    /* Minimal shadow */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: none;
+    /* Removed border */
+}
+
+.login-logo {
+    width: 140px;
+    margin-bottom: 2rem;
+    opacity: 1;
+}
+
+.login-header h2 {
+    font-size: 2rem;
+    font-weight: 300;
+    /* Light weight like H1 */
+    margin-bottom: 0.5rem;
+    text-align: center;
+    color: #333333;
+    /* Dark Grey */
+    line-height: 1.2;
+}
+
+.login-header p {
+    color: #666666;
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #1a1a1a;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.form-input {
+    padding: 1rem 1.25rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    /* Very subtle border */
+    border-radius: 8px;
+    /* Slightly rounded inputs */
+    background: #fff;
+    color: #333;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    outline: none;
+}
+
+.form-input:focus {
+    border-color: #F0712C;
+    box-shadow: 0 0 0 1px rgba(240, 113, 44, 0.2);
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 0.5rem;
+    cursor: pointer;
+}
+
+.remember-checkbox {
+    accent-color: #F0712C;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.remember-text {
+    font-size: 0.9rem;
+    color: #666;
+    font-weight: 400;
+}
+
+/* Login Button - LxArch Pill Style */
+.login-btn {
+    margin-top: 1.5rem;
+    background-color: #F0712C;
+    /* LxArch Orange */
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 9999px;
+    /* Pill shape */
+    font-weight: 400;
+    /* Regular weight */
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+    cursor: pointer;
+    text-transform: none;
+    /* As requested */
+    letter-spacing: normal;
+}
+
+.login-btn:hover {
+    background-color: #d65a1b;
+    /* Darker orange on hover */
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(240, 113, 44, 0.3);
+}
+
+.error-msg {
+    color: #EF4444;
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    text-align: center;
+    min-height: 1.25rem;
+}
+
+/* Footer subtle branding */
+.login-footer {
+    margin-top: 2rem;
+    font-size: 0.75rem;
+    color: #999;
+    font-weight: 300;
+}

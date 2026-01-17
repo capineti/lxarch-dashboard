@@ -16,7 +16,7 @@
     right: 0;
     /* Removed flex here to let container handle it */
     height: var(--header-height);
-    z-index: 10;
+    z-index: 100;
     /* Transparent initially */
     background: transparent;
     transition: background-color 0.3s ease, border-bottom 0.3s ease, backdrop-filter 0.3s ease;

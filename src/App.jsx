@@ -1,13 +1,33 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { MainLayout } from './components/layout/MainLayout';
 import { AgentGridScreen } from './features/vendors/AgentGridScreen';
 import { VendorAnalyticsScreen } from './features/vendors/VendorAnalyticsScreen'; // New Import
 import { AnalysisScreen } from './features/analysis/AnalysisScreen';
+import { LoginScreen } from './features/auth/LoginScreen';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(() => {
+    return localStorage.getItem('lxarch_auth') === 'true';
+  });
+
   const [currentView, setCurrentView] = useState('dashboard');
   const [selectedAgent, setSelectedAgent] = useState(null);
   const [selectedCall, setSelectedCall] = useState(null); // Track selected call
+
+  const handleLogin = (keepLoggedIn) => {
+    setIsAuthenticated(true);
+    if (keepLoggedIn) {
+      localStorage.setItem('lxarch_auth', 'true');
+    } else {
+      sessionStorage.setItem('lxarch_session', 'true');
+    }
+  };
+
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('lxarch_auth');
+    sessionStorage.removeItem('lxarch_session');
+  };
 
   // Step 1: Click Agent -> Go to Vendor Dashboard
   const handleAgentSelect = (agent) => {
@@ -55,11 +75,20 @@ function App() {
           />
         );
       case 'settings':
-        return <div className="p-10">Configuración (WIP)</div>;
+        return <div className="p-10">
+          <h2 className="text-xl mb-4">Configuración</h2>
+          <button onClick={handleLogout} className="px-4 py-2 bg-red-100 text-red-600 rounded">
+            Cerrar Sesión
+          </button>
+        </div>;
       default:
         return <AgentGridScreen onAgentSelect={handleAgentSelect} />;
     }
   };
+
+  if (!isAuthenticated) {
+    return <LoginScreen onLogin={handleLogin} />;
+  }
 
   return (
     <MainLayout currentView={currentView} onNavigate={(view) => {

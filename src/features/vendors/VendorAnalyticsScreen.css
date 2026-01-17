@@ -323,3 +323,271 @@
     font-weight: 500;
     color: var(--text-main);
 }
+
+/* Weeks List Layout */
+.weeks-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    max-height: 350px;
+    overflow-y: auto;
+    padding-right: 12px;
+    /* Space for scrollbar */
+}
+
+/* Custom Scrollbar for Weeks List */
+.weeks-list::-webkit-scrollbar {
+    width: 6px;
+    /* Restored for visibility */
+}
+
+.weeks-list::-webkit-scrollbar-track {
+    background: transparent;
+    margin: 4px 0;
+    /* Resetting margins to allow full vertical travel */
+}
+
+.weeks-list::-webkit-scrollbar-thumb {
+    background-color: var(--lx-orange);
+    border-radius: 10px;
+    border-block: 10px solid transparent;
+    /* Visual padding inside the thumb to make it shorter */
+    background-clip: content-box;
+    /* Ensures the background doesn't bleed into the border area */
+}
+
+.week-row {
+    background: var(--bg-card);
+    border-radius: var(--radius-md);
+    padding: var(--space-md);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    border: 1px solid transparent;
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s ease;
+}
+
+.week-row:hover {
+    transform: translateX(4px);
+    border-color: var(--primary);
+    box-shadow: var(--shadow-card);
+}
+
+.week-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.week-label {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-main);
+}
+
+.week-date {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+.week-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+}
+
+.week-count {
+    font-size: 0.9rem;
+    font-weight: 600;
+    background: var(--bg-app);
+    /* Slightly darker/lighter than card */
+    padding: 6px 12px;
+    border-radius: 20px;
+    color: var(--text-main);
+}
+
+.week-arrow {
+    font-size: 1.2rem;
+    color: var(--primary);
+    font-weight: 600;
+    transition: transform 0.2s ease;
+}
+
+.week-row:hover .week-arrow {
+    transform: translateX(4px);
+}
+
+/* Breadcrumb Navigation */
+.week-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: var(--space-md);
+    font-size: 0.9rem;
+    cursor: pointer;
+    width: fit-content;
+}
+
+.week-breadcrumb span {
+    color: var(--text-muted);
+    transition: color 0.2s;
+}
+
+.week-breadcrumb:hover span:first-child {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.week-breadcrumb .separator {
+    color: var(--text-muted);
+    font-size: 0.8rem;
+}
+
+.week-breadcrumb .current {
+    font-weight: 700;
+    color: var(--text-main);
+    pointer-events: none;
+}
+
+/* Current Week Highlight */
+.week-row.current-week {
+    border-color: var(--lx-orange);
+    background-color: rgba(240, 113, 44, 0.1);
+    /* More evident orange tint */
+}
+
+/* Section Header Row */
+.section-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: var(--space-md);
+}
+
+.section-header-row h3 {
+    margin-bottom: 0;
+    /* Remove default margin as container handles it */
+}
+
+/* Report Status Badge */
+.report-status-badge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 6px 12px;
+    border-radius: 6px;
+    letter-spacing: 0.05em;
+}
+
+.report-status-badge.status-sent {
+    background-color: #DCFCE7;
+    /* Light Green */
+    color: #166534;
+    /* Dark Green */
+    border: 1px solid #BBF7D0;
+}
+
+.report-status-badge.status-current {
+    background-color: #FFEDD5;
+    /* Light Orange */
+    color: #9A3412;
+    /* Dark Orange */
+    border: 1px solid #FED7AA;
+}
+
+/* Header Toggle Button */
+.grid-toggle-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 8px;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid-toggle-btn:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+    color: var(--text-main);
+}
+
+.grid-toggle-btn.active {
+    color: var(--lx-orange);
+    background-color: rgba(240, 113, 44, 0.1);
+}
+
+/* Months Grid View */
+.months-grid-view {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    /* 6 columns x 2 rows = 12 months (Compact) */
+    gap: 0.5rem;
+    padding: 0.5rem 0;
+    margin-top: 0.5rem;
+    animation: fadeIn 0.3s ease;
+}
+
+.month-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    aspect-ratio: 1.5;
+    /* Rectangular, shorter */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    font-weight: 500;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.month-card:hover:not(.disabled):not(.active) {
+    border-color: var(--lx-orange);
+    color: var(--lx-orange);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.month-card.active {
+    background-color: var(--lx-orange);
+    border-color: var(--lx-orange);
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(240, 113, 44, 0.3);
+}
+
+/* Future Month (Disabled) - Neutral Light Grey */
+.month-card.disabled {
+    background-color: #E0E0E0 !important;
+    /* Neutral Grey */
+    color: #9E9E9E !important;
+    border-color: transparent !important;
+    cursor: default;
+}
+
+/* Past Month - Neutral Dark Grey */
+.month-card.past {
+    background-color: #616161 !important;
+    /* Neutral Dark Grey */
+    color: #FFFFFF !important;
+    border-color: transparent !important;
+}
+
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

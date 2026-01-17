@@ -384,7 +384,7 @@
 /* Diagnosis section positioning */
 .diagnosis-section {
     position: relative;
-    z-index: 60;
+    z-index: 10;
     /* Higher than sticky header (50) to scroll OVER it */
     transition: margin-top 0.25s ease-out;
     margin-top: 2rem;
@@ -504,7 +504,7 @@
 .sticky-header-container {
     position: sticky;
     top: 80px;
-    z-index: 50;
+    z-index: 90;
     margin: 0 -20px;
     padding: 0 20px 20px 20px;
     /* Restored padding */
